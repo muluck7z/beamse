@@ -15,7 +15,7 @@ h1{font-size:15px;color:#111111;font-weight:600;letter-spacing:-.01em}
 .card-hd{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:1px solid rgba(0,0,0,.08);background:linear-gradient(90deg,rgba(17,17,17,.08),transparent);font-size:10px;letter-spacing:.25em;color:rgba(252,165,165,.8);text-transform:uppercase}
 .row{display:flex;gap:8px;padding:14px}
 .input{flex:1;display:flex;gap:6px;align-items:center;padding:9px 12px;border:1px solid rgba(0,0,0,.12);background:rgba(0,0,0,.04);border-radius:10px;transition:.15s}
-.input:focus-within{border-color:rgba(17,17,17,.6);box-shadow:0 0 0 3px rgba(17,17,17,.08);background:rgba(0,0,0,.6)}
+.input:focus-within{border-color:rgba(17,17,17,.6);box-shadow:0 0 0 3px rgba(17,17,17,.08);background:rgba(0,0,0,.06)}
 .at{color:rgba(248,113,113,.7);font-family:ui-monospace,monospace}
 .input input{flex:1;background:transparent;border:0;outline:0;color:#111111;font-size:13px}
 .input input::placeholder{color:#52525b}
