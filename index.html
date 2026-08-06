@@ -571,7 +571,7 @@
     width: 8px; height: 8px;
     border-radius: 50%;
     background: var(--red-glow);
-    box-shadow: 0 0 8px rgba(255,45,71,0.8);
+    box-shadow: 0 0 8px rgba(17,17,17,0.8);
     animation: pulse-dot 1.8s ease-in-out infinite;
     flex-shrink: 0;
   }
@@ -585,14 +585,14 @@
   /* Card externo — borda vermelha forte */
   .ann-outer{
     background: rgba(17,17,17,0.08);
-    border: 1px solid rgba(255,45,71,0.45);
+    border: 1px solid rgba(17,17,17,0.45);
     border-radius: 16px;
     padding: 16px;
   }
   /* Card interno — fundo mais escuro, borda vermelha suave */
   .ann-inner{
     background: rgba(10,10,12,0.55);
-    border: 1px solid rgba(255,45,71,0.18);
+    border: 1px solid rgba(17,17,17,0.18);
     border-radius: 12px;
     padding: 14px;
     display: grid;
@@ -610,11 +610,11 @@
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
-    border: 2.5px solid rgba(255, 45, 71, 0.95);
+    border: 2.5px solid rgba(17,17,17, 0.95);
     box-shadow:
-      0 0 0 4px rgba(255, 45, 71, 0.18),
-      0 0 18px rgba(255, 45, 71, 0.55),
-      0 0 36px rgba(255, 45, 71, 0.20);
+      0 0 0 4px rgba(17,17,17, 0.18),
+      0 0 18px rgba(17,17,17, 0.55),
+      0 0 36px rgba(17,17,17, 0.20);
     cursor: default;
     pointer-events: none;
     -webkit-tap-highlight-color: transparent;
@@ -648,8 +648,8 @@
   .ann-check svg{ display: block; }
   /* Tag retangular */
   .ann-tag{
-    background: rgba(255,45,71,0.18);
-    border: 1px solid rgba(255,45,71,0.38);
+    background: rgba(17,17,17,0.18);
+    border: 1px solid rgba(17,17,17,0.38);
     color: var(--red-glow);
     font-size: 9px;
     font-weight: 800;
@@ -1674,7 +1674,7 @@
     .ext-tut-dev-label{font-size:0.6rem;color:rgba(0,0,0,0.20);font-family:'Rajdhani',sans-serif}
     .ext-tut-btns{display:flex;gap:8px;margin-top:10px}
     .ext-tut-btn{padding:6px 12px;border-radius:4px;font-size:0.55rem;font-family:'Rajdhani',sans-serif;font-weight:600;border:1px solid rgba(0,0,0,0.09);background:transparent;color:rgba(0,0,0,0.25);transition:all 0.3s}
-    .ext-tut-btn.lit{border-color:rgba(17,17,17,0.5);color:rgba(255,45,71,0.9);background:rgba(17,17,17,0.1)}
+    .ext-tut-btn.lit{border-color:rgba(17,17,17,0.5);color:rgba(17,17,17,0.9);background:rgba(17,17,17,0.1)}
     .ext-tut-steps{padding:14px 18px 16px;display:flex;gap:6px;justify-content:center}
     .ext-tut-step-dot{width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,0.09);transition:background 0.3s}
     .ext-tut-step-dot.active{background:rgba(0,0,0,0.45)}
@@ -1701,7 +1701,7 @@
   .am-run-num.ok{color:#3ecf6a;}.am-run-num.err{color:var(--red-glow);}
   .am-log-box{background:rgba(0,0,0,0.3);border:1px solid var(--surface-border);border-radius:11px;padding:10px 12px;max-height:150px;overflow-y:auto;font-family:monospace;font-size:11.5px;display:flex;flex-direction:column;gap:3px;margin-top:14px;}
   .am-log-box::-webkit-scrollbar{width:3px;}
-  .am-log-box::-webkit-scrollbar-thumb{background:rgba(255,45,71,0.25);border-radius:2px;}
+  .am-log-box::-webkit-scrollbar-thumb{background:rgba(17,17,17,0.25);border-radius:2px;}
   .am-log-row{display:flex;gap:8px;align-items:baseline;}
   .am-log-ts{color:var(--text-faint);font-size:10.5px;flex-shrink:0;}
   .am-log-msg{color:#3ecf6a;}.am-log-msg.err{color:var(--red-glow);}.am-log-msg.info{color:var(--text-muted);}
@@ -1782,7 +1782,7 @@
             overflow: hidden;
             border-radius: 16px 16px 0 0;
             margin-bottom: -2px;
-            border: 1px solid rgba(255, 45, 71, 0.3);
+            border: 1px solid rgba(17,17,17, 0.3);
             border-bottom: none;
         }
 
@@ -1814,7 +1814,7 @@
 
         #lw-outer {
             background: linear-gradient(180deg, rgba(224, 16, 42, 0.1), rgba(224, 16, 42, 0.05));
-            border: 1px solid rgba(255, 45, 71, 0.4);
+            border: 1px solid rgba(17,17,17, 0.4);
             border-radius: 0 0 18px 18px;
             padding: 17px;
             box-shadow: 0 24px 50px -22px rgba(0,0,0,0.8);
@@ -1822,7 +1822,7 @@
 
         #lw-inner {
             background: rgba(8, 7, 8, 0.6);
-            border: 1px solid rgba(255, 45, 71, 0.18);
+            border: 1px solid rgba(17,17,17, 0.18);
             border-radius: 13px;
             padding: 15px;
             display: grid;
@@ -1842,7 +1842,7 @@
             object-fit: cover;
             object-position: center 40%;
             border: 2.5px solid rgba(10, 10, 12, 0.9);
-            box-shadow: 0 0 0 2px rgba(255, 45, 71, 0.8), 0 0 18px rgba(255, 45, 71, 0.5), 0 0 34px rgba(255, 45, 71, 0.18);
+            box-shadow: 0 0 0 2px rgba(17,17,17, 0.8), 0 0 18px rgba(17,17,17, 0.5), 0 0 34px rgba(17,17,17, 0.18);
             pointer-events: none;
             user-select: none;
         }
@@ -1872,7 +1872,7 @@
         #lw-check {
             width: 15px;
             height: 15px;
-            background: linear-gradient(145deg, #ff2d47, #a30f22);
+            background: linear-gradient(145deg, #111111, #000000);
             border-radius: 4.5px;
             display: flex;
             align-items: center;
@@ -1881,9 +1881,9 @@
         }
 
         #lw-tag {
-            background: rgba(255, 45, 71, 0.14);
-            border: 1px solid rgba(255, 45, 71, 0.4);
-            color: #ff2d47;
+            background: rgba(17,17,17, 0.14);
+            border: 1px solid rgba(17,17,17, 0.4);
+            color: #111111;
             font-size: 9px;
             font-weight: 800;
             letter-spacing: 0.09em;
@@ -1908,11 +1908,11 @@
             color: var(--text-muted);
             font-family: 'Inter', sans-serif;
             padding-top: 2px;
-            border-top: 1px solid rgba(255, 45, 71, 0.14);
+            border-top: 1px solid rgba(17,17,17, 0.14);
         }
 
         #lw-desc strong {
-            color: #ff2d47;
+            color: #111111;
             font-weight: 700;
         }
 
@@ -1920,10 +1920,10 @@
         #login-error {
             grid-column: 1 / -1;
             background: rgba(17,17,17,0.09);
-            border: 1px solid rgba(255,45,71,0.28);
+            border: 1px solid rgba(17,17,17,0.28);
             border-radius: 10px;
             padding: 10px 13px;
-            font-size: 12px; color: #ff2d47;
+            font-size: 12px; color: #111111;
             font-family: 'Inter', sans-serif;
             line-height: 1.5;
         }
@@ -1938,7 +1938,7 @@
             gap: 10px;
             padding: 14px 18px;
             background: linear-gradient(180deg, rgba(17,17,17,0.18), rgba(17,17,17,0.08));
-            border: 1.5px solid rgba(255, 45, 71, 0.55);
+            border: 1.5px solid rgba(17,17,17, 0.55);
             border-radius: 12px;
             color: #fff;
             text-decoration: none;
@@ -1964,7 +1964,7 @@
 
         #lw-btn:hover {
             background: linear-gradient(180deg, rgba(17,17,17,0.3), rgba(17,17,17,0.14));
-            border-color: rgba(255, 45, 71, 0.9);
+            border-color: rgba(17,17,17, 0.9);
             box-shadow: 0 10px 30px -8px rgba(17,17,17,0.75);
             animation-play-state: paused;
         }
@@ -3702,9 +3702,9 @@ function runExtTutorial(){
   function stepToggle(){if(!extTutRunning)return;moveCursor(toggle,null,null,function(){clickEffect(toggle);toggle.classList.add('on');document.getElementById('extTutBtnsWrap').style.opacity='1';document.getElementById('extTutBtnsWrap').style.maxHeight='60px';setExtStep(1);extDelay(stepLoadBtn,700);});}
   function stepLoadBtn(){if(!extTutRunning)return;moveCursor(loadBtn,null,null,function(){clickEffect(loadBtn);loadBtn.classList.add('lit');setExtStep(2);extDelay(stepFilePicker,500);});}
   function stepFilePicker(){if(!extTutRunning)return;showScene(2);cursor.style.left='50%';cursor.style.top='80%';extDelay(stepDownloads,400);}
-  function stepDownloads(){if(!extTutRunning)return;var dl=document.getElementById('extFpDownloads');moveCursor(dl,null,null,function(){clickEffect(dl);dl.style.background='rgba(17,17,17,0.12)';dl.style.color='rgba(255,45,71,0.9)';document.getElementById('extFpEmpty').style.display='none';document.getElementById('extFpZipView').style.display='block';setExtStep(3);extDelay(stepZip,500);});}
+  function stepDownloads(){if(!extTutRunning)return;var dl=document.getElementById('extFpDownloads');moveCursor(dl,null,null,function(){clickEffect(dl);dl.style.background='rgba(17,17,17,0.12)';dl.style.color='rgba(17,17,17,0.9)';document.getElementById('extFpEmpty').style.display='none';document.getElementById('extFpZipView').style.display='block';setExtStep(3);extDelay(stepZip,500);});}
   function stepZip(){if(!extTutRunning)return;var zip=document.getElementById('extFpZip');moveCursor(zip,null,null,function(){clickEffect(zip);zip.style.background='rgba(17,17,17,0.08)';zip.style.borderColor='rgba(17,17,17,0.25)';extDelay(function(){document.getElementById('extFpZipView').style.display='none';document.getElementById('extFpFolderView').style.display='block';setExtStep(4);extDelay(stepFolder,500);},600);});}
-  function stepFolder(){if(!extTutRunning)return;var f=document.getElementById('extFpFolder');moveCursor(f,null,null,function(){clickEffect(f);f.style.background='rgba(17,17,17,0.1)';f.style.borderColor='rgba(17,17,17,0.35)';var s=document.getElementById('extFpSelectBtn');s.style.background='rgba(17,17,17,0.18)';s.style.color='rgba(255,45,71,0.95)';s.style.borderColor='rgba(17,17,17,0.4)';extDelay(function(){stepSelectFolder(s);},600);});}
+  function stepFolder(){if(!extTutRunning)return;var f=document.getElementById('extFpFolder');moveCursor(f,null,null,function(){clickEffect(f);f.style.background='rgba(17,17,17,0.1)';f.style.borderColor='rgba(17,17,17,0.35)';var s=document.getElementById('extFpSelectBtn');s.style.background='rgba(17,17,17,0.18)';s.style.color='rgba(17,17,17,0.95)';s.style.borderColor='rgba(17,17,17,0.4)';extDelay(function(){stepSelectFolder(s);},600);});}
   function stepSelectFolder(s){if(!extTutRunning)return;moveCursor(s,null,null,function(){clickEffect(s);setExtStep(5);extDelay(stepInstalled,400);});}
   function stepInstalled(){if(!extTutRunning)return;showScene(3);cursor.classList.remove('show');var card=document.getElementById('extInstalledCard');card.style.opacity='0';card.style.transform='translateY(8px)';extDelay(function(){card.style.opacity='1';card.style.transform='translateY(0)';extDelay(stepPopup,2000);},50);}
   function stepPopup(){if(!extTutRunning)return;setExtStep(6);showScene(4);var popup=document.getElementById('extPopup'),item=document.getElementById('extPopupItem');popup.style.opacity='0';popup.style.transform='translateY(-6px) scale(0.96)';item.style.opacity='0';item.style.transform='translateX(-4px)';extDelay(function(){popup.style.opacity='1';popup.style.transform='translateY(0) scale(1)';extDelay(function(){item.style.opacity='1';item.style.transform='translateX(0)';extDelay(runExtTutorial,2500);},400);},100);}
@@ -3784,8 +3784,8 @@ function runExtTutorial(){
               <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px;"><span style="font-size:0.6rem;color:rgba(0,0,0,0.6);font-family:'Rajdhani',sans-serif;font-weight:700;">Beamse Beaming</span><span style="font-size:0.45rem;color:rgba(0,0,0,0.20);font-family:'Rajdhani',sans-serif;">1.0.0</span></div>
               <div style="font-size:0.45rem;color:rgba(0,0,0,0.25);font-family:'Rajdhani',sans-serif;line-height:1.4;">By Muluck7z Of Beamse</div>
               <div style="margin-top:6px;display:flex;align-items:center;gap:8px;">
-                <span style="font-size:0.42rem;padding:3px 8px;border:1px solid rgba(17,17,17,0.4);border-radius:3px;color:rgba(255,45,71,0.8);font-family:'Rajdhani',sans-serif;font-weight:600;">Detalhes</span>
-                <span style="font-size:0.42rem;padding:3px 8px;border:1px solid rgba(17,17,17,0.4);border-radius:3px;color:rgba(255,45,71,0.8);font-family:'Rajdhani',sans-serif;font-weight:600;">Remover</span>
+                <span style="font-size:0.42rem;padding:3px 8px;border:1px solid rgba(17,17,17,0.4);border-radius:3px;color:rgba(17,17,17,0.8);font-family:'Rajdhani',sans-serif;font-weight:600;">Detalhes</span>
+                <span style="font-size:0.42rem;padding:3px 8px;border:1px solid rgba(17,17,17,0.4);border-radius:3px;color:rgba(17,17,17,0.8);font-family:'Rajdhani',sans-serif;font-weight:600;">Remover</span>
                 <div style="margin-left:auto;"><div id="extInstToggle" style="width:24px;height:13px;border-radius:7px;background:rgba(17,17,17,0.6);position:relative;"><div style="width:9px;height:9px;border-radius:50%;background:#fff;position:absolute;top:2px;left:13px;"></div></div></div>
               </div>
             </div>
