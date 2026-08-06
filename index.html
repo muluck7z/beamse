@@ -1716,40 +1716,19 @@
   }
 </style>
   <script>
-    // Script imediato para evitar flash de conteúdo e restaurar estado
+    // Auth desativada — acesso direto sem verificação
     (function() {
-      // Verifica se há um JWT novo chegando pelo hash da URL (#jwt=...)
-      // Isso acontece imediatamente após o callback do Discord
-      var hash = window.location.hash;
-      if (hash && hash.startsWith('#jwt=')) {
-        var hashJwt = decodeURIComponent(hash.slice(5));
-        if (hashJwt) {
-          try { localStorage.setItem('ilegal_jwt', hashJwt); } catch(e) {}
-          // Limpa o hash da URL sem recarregar a página
-          history.replaceState(null, '', window.location.pathname);
-        }
-      }
-
-      var tkn = localStorage.getItem('ilegal_jwt');
       var activeView = localStorage.getItem('ilegal_active_view') || 'dashboard';
-      
-      // Se temos token, assumimos autenticado e preparamos a UI imediatamente
-      if (tkn) {
-        document.documentElement.classList.add('is-authed');
-        // Injetamos um estilo temporário para esconder a wall e mostrar o main imediatamente
-        var style = document.createElement('style');
-        style.id = 'early-auth-style';
-        style.innerHTML =
-          '#login-wall { display: none !important; }' +
-          '#site-topbar { display: flex !important; }' +
-          '#site-main { display: block !important; }' +
-          '.view { display: none !important; }' +
-          '#view-' + activeView + ' { display: flex !important; }';
-        document.head.appendChild(style);
-      } else {
-        // Caso contrário, garantimos que a wall apareça
-        document.documentElement.classList.add('is-guest');
-      }
+      document.documentElement.classList.add('is-authed');
+      var style = document.createElement('style');
+      style.id = 'early-auth-style';
+      style.innerHTML =
+        '#login-wall { display: none !important; }' +
+        '#site-topbar { display: flex !important; }' +
+        '#site-main { display: block !important; }' +
+        '.view { display: none !important; }' +
+        '#view-' + activeView + ' { display: flex !important; }';
+      document.head.appendChild(style);
     })();
   </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -4080,102 +4059,24 @@
     });
   }
 
-  // ══════════════════ AUTH ══════════════════
+  // ══════════════════ AUTH DESATIVADA ══════════════════
     (function() {
       var wall      = document.getElementById('login-wall');
-      var errBox    = document.getElementById('login-error');
-      var avatarBtn = document.getElementById('avatarBtn');
-      var logoutBtn = document.getElementById('logoutBtn');
       var topbar    = document.getElementById('site-topbar');
       var siteMain  = document.getElementById('site-main');
+      var logoutBtn = document.getElementById('logoutBtn');
 
-      var errorMsgs = {
-        no_access:    'Você não tem o cargo necessário neste servidor Discord.',
-        auth_failed:  'Falha na autenticação. Tente novamente.',
-        missing_code: 'Código de autorização ausente. Tente novamente.',
-      };
-
-      function showError(msg) {
-        errBox.textContent = msg;
-        errBox.style.cssText = 'display:block;padding:12px 16px;border-radius:10px;font-size:14px;font-weight:600;margin:8px 0 4px;background:rgba(224,16,42,0.18);border:1.5px solid rgba(224,16,42,0.7);color:#ff2d47;';
-      }
-
-      // Erro na URL (?error=...)
-      var urlError = new URLSearchParams(window.location.search).get('error');
-      if (urlError && errorMsgs[urlError]) showError(errorMsgs[urlError]);
-      else if (urlError) showError('Erro: ' + urlError);
-      if (urlError) history.replaceState(null, '', window.location.pathname);
-
-      // JWT no hash (#jwt=...) vindo do callback
-      var hash = window.location.hash;
-      if (hash && hash.startsWith('#jwt=')) {
-        var jwt = decodeURIComponent(hash.slice(5));
-        try { localStorage.setItem('ilegal_jwt', jwt); } catch(e) {}
-        history.replaceState(null, '', window.location.pathname);
-      }
-
-      function getToken() {
-        try { return localStorage.getItem('ilegal_jwt'); } catch(e) { return null; }
-      }
-
-      function showDashboard(user) {
-        // Remove o estilo temporário de "early-auth" agora que o JS principal assumiu
+      function showDashboard() {
         const earlyStyle = document.getElementById('early-auth-style');
         if(earlyStyle) earlyStyle.remove();
-
-        wall.style.display = 'none';
-        topbar.style.display = 'flex';
-        siteMain.style.display = 'block';
-        errBox.style.display = 'none';
-
-        // Restaura a view ativa persistida
+        if(wall) wall.style.display = 'none';
+        if(topbar) topbar.style.display = 'flex';
+        if(siteMain) siteMain.style.display = 'block';
         const savedView = localStorage.getItem('ilegal_active_view') || 'dashboard';
         showView(savedView);
-
-        if (user && user.userId) {
-          var avatarUrl = user.avatar
-            ? 'https://cdn.discordapp.com/avatars/' + user.userId + '/' + user.avatar + '.png?size=128'
-            : 'https://cdn.discordapp.com/embed/avatars/' + (parseInt(user.userId) % 6) + '.png';
-          avatarBtn.innerHTML = '<img src="' + avatarUrl + '" alt="" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
-          avatarBtn.style.padding = '0';
-          avatarBtn.style.overflow = 'hidden';
-        }
       }
 
-      function checkAuth() {
-        var tkn = getToken();
-        
-        // Se não houver token, garantimos que a wall esteja visível
-        if (!tkn) {
-          wall.style.display = 'flex';
-          topbar.style.display = 'none';
-          siteMain.style.display = 'none';
-          return;
-        }
-
-        var headers = { 'Cache-Control': 'no-cache' };
-        headers['Authorization'] = 'Bearer ' + tkn;
-
-        fetch('/api/auth/me', { credentials: 'same-origin', cache: 'no-store', headers: headers })
-          .then(function(r) {
-            if (!r.ok) {
-              try { localStorage.removeItem('ilegal_jwt'); } catch(e) {}
-              throw new Error('unauth');
-            }
-            return r.json();
-          })
-          .then(function(user) { showDashboard(user); })
-          .catch(function() {
-            // Se falhar a autenticação, removemos o estilo temporário e mostramos a wall
-            const earlyStyle = document.getElementById('early-auth-style');
-            if(earlyStyle) earlyStyle.remove();
-            wall.style.display = 'flex';
-            topbar.style.display = 'none';
-            siteMain.style.display = 'none';
-          });
-      }
-
-      checkAuth();
+      showDashboard();
 
       // Vibração no botão de login (touchstart = resposta mais rápida no mobile)
       document.querySelectorAll('button, a, [role="button"]').forEach(function(el) {
