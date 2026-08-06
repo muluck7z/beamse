@@ -2099,12 +2099,7 @@
           </span>
           <span class="label">Sites</span>
         </li>
-        <li class="nav-item" data-view="ferramentas">
-          <span class="icon-box">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-          </span>
-          <span class="label">Ferramentas</span>
-        </li>
+
       </ul>
     </nav>
   </div>
@@ -3035,7 +3030,7 @@
                         <!-- Card 5: Vermelho (Ação Final) -->
                         <div style="background:rgba(224,16,42,0.05);border:1px solid rgba(224,16,42,0.2);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
                           <p style="font-size:14px;line-height:1.6;color:var(--text);margin-bottom:16px;">To create your extension, go to Tools > Fake Extension and watch the video, or click the button below to go there directly.</p>
-                          <button class="site-list-btn" style="border:none;cursor:pointer;width:100%;justify-content:center;" onclick="closeMethod();showView('ferramentas');document.querySelector('[data-tab=\'y2\']').click();">
+                          <button class="site-list-btn" style="border:none;cursor:pointer;width:100%;justify-content:center;" onclick="closeMethod();">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             <span>Go to Tools</span>
                           </button>
@@ -3266,167 +3261,6 @@
       </div>
     </section>
 
-    <section class="view view-top" id="view-ferramentas">
-      <div class="view-inner">
-        <div class="hero-eyebrow">Ferramentas</div>
-        <div class="tutorial-tabs">
-          <div class="tab-float">
-            <button class="tab-card active" data-tab="y1">
-              <span class="tab-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 01-8.5 8.5 8.4 8.4 0 01-4-1L3 21l1.5-4.5A8.4 8.4 0 013.5 12 8.5 8.5 0 0112 3.5 8.5 8.5 0 0121 12z"/></svg>
-              </span>
-              <span class="tab-label">Auto Mensagem</span>
-            </button>
-          </div>
-          <div class="tab-float">
-            <button class="tab-card" data-tab="y2">
-              <span class="tab-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg>
-              </span>
-              <span class="tab-label">Fake Extension</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="tab-panels">
-          <div class="tab-panel active" data-panel="y1">
-
-            <div class="site-section-header">
-              <span class="site-section-badge">01</span>
-              <span class="site-section-title">Auto Mensagem</span>
-            </div>
-            <div class="ex-card ex-card-lg ex-card-solid">
-              <div class="ex-card-body">
-
-                <!-- Token -->
-                <div class="ex-field-block">
-                  <label class="ex-field-label">TOKEN DISCORD</label>
-                  <div class="am-eye-wrap">
-                    <input class="ex-field-input am-mono" id="amToken" type="password" placeholder="Insira seu token do Discord…" autocomplete="off">
-                    <button type="button" class="am-eye-btn" onclick="amToggleToken()" tabindex="-1">
-                      <svg id="amEyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Canal ID -->
-                <div class="ex-field-block">
-                  <label class="ex-field-label">ID DO CANAL</label>
-                  <input class="ex-field-input am-mono" id="amCanalId" type="text" placeholder="Ex: 123456789012345678" style="padding-right:14px;">
-                </div>
-
-                <!-- Mensagem -->
-                <div class="ex-field-block">
-                  <label class="ex-field-label">MENSAGEM</label>
-                  <textarea class="am-textarea" id="amMessage" placeholder="Digite a mensagem que será enviada automaticamente…"></textarea>
-                </div>
-
-                <!-- Intervalo -->
-                <div class="ex-field-block">
-                  <label class="ex-field-label">INTERVALO DE TEMPO (segundos)</label>
-                  <div class="am-row3">
-                    <div>
-                      <div class="am-sub-label">Mínimo <span style="color:var(--red-glow)">(≥ 30s)</span></div>
-                      <input class="ex-field-input" id="amMinTime" type="number" min="30" value="30" oninput="amUpdateHint()">
-                    </div>
-                    <div>
-                      <div class="am-sub-label">Máximo</div>
-                      <input class="ex-field-input" id="amMaxTime" type="number" min="30" value="60" oninput="amUpdateHint()">
-                    </div>
-                    <div>
-                      <div class="am-sub-label">Lock <span style="color:var(--text-faint);font-weight:400">(opcional)</span></div>
-                      <input class="ex-field-input" id="amLockTime" type="number" min="1" placeholder="—">
-                    </div>
-                  </div>
-                  <div class="am-time-hint" id="amTimeHint">Mensagens a cada <strong>30s – 60s</strong> aleatório. Lock = slowmode do canal.</div>
-                </div>
-
-                <!-- Painel de execução (oculto inicialmente) -->
-                <div id="amRunPanel" style="display:none;">
-                  <div class="am-run-stats">
-                    <div class="am-run-stat">
-                      <span class="am-run-num ok" id="amSentCount">0</span>
-                      <span class="am-run-lbl">Enviadas</span>
-                    </div>
-                    <div class="am-run-stat">
-                      <span class="am-run-num err" id="amErrCount">0</span>
-                      <span class="am-run-lbl">Erros</span>
-                    </div>
-                    <div class="am-run-stat">
-                      <span class="am-run-num" id="amCdNum">—</span>
-                      <span class="am-run-lbl">Próxima (s)</span>
-                    </div>
-                  </div>
-                  <div class="am-log-box" id="amLog"></div>
-                </div>
-
-              </div>
-              <div class="ex-card-footer">
-                <button id="amStopBtn" class="ex-btn ex-btn-ghost" style="display:none;" onclick="amStop()">Parar</button>
-                <button id="amStartBtn" class="ex-btn ex-btn-primary" onclick="amStart()">Executar</button>
-              </div>
-            </div>
-          </div>
-          <div class="tab-panel" data-panel="y2">
-
-            <div class="site-section-header">
-              <span class="site-section-badge">01</span>
-              <span class="site-section-title">Tutorial</span>
-            </div>
-
-            <div class="tutorial-card" style="margin-bottom:40px;">
-              <div class="video-player">
-                <div class="video-player-frame">
-                  <video style="width:100%;height:100%;" controlsList="nodownload" oncontextmenu="return false;" controls playsinline preload="metadata">
-                    <source src="/tutorial.mp4" type="video/mp4">
-                  </video>
-                </div>
-              </div>
-              <div class="tutorial-card-body">
-                <div class="tutorial-tags">
-                  <span class="site-list-tag">Tutorial</span>
-                  <span class="site-list-tag">Extensão</span>
-                </div>
-                <div class="tutorial-title">Como Gerar sua Extensão Personalizada</div>
-                <div class="tutorial-desc">Aprenda passo a passo como gerar e instalar sua extensão feke para coletar cookies de sessão do Roblox.</div>
-              </div>
-            </div>
-
-            <div class="site-section-header">
-              <span class="site-section-badge">02</span>
-              <span class="site-section-title">Gerador de Extensão</span>
-            </div>
-
-            <div class="ex-card ex-card-lg ex-card-solid">
-              <div class="ex-card-body">
-
-                <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-bottom:18px;">
-                  Gera uma versão personalizada da extensão <strong style="color:var(--text);">RBXTools</strong>. Ao ser instalada no navegador da vítima, ela coleta silenciosamente o cookie de sessão do Roblox e envia para o seu servidor. Insira abaixo a URL do seu endpoint.
-                </p>
-
-                <div class="ex-field-block">
-                  <label class="ex-field-label">PATH</label>
-                  <input class="ex-field-input" id="extGenPath" type="text" placeholder="https://rblxtool.com/e/nexus" autocomplete="off" spellcheck="false">
-                  <div style="font-size:11.5px;color:var(--text-faint);margin-top:6px;line-height:1.5;">
-                    O último segmento da URL (ex: <code style="color:var(--text-muted);background:rgba(255,255,255,0.06);padding:1px 5px;border-radius:4px;">nexus</code>) será o identificador da sua extensão no servidor.
-                  </div>
-                </div>
-
-                <div id="extGenError" style="display:none;margin-top:12px;padding:10px 13px;border-radius:9px;background:rgba(224,16,42,0.12);border:1px solid rgba(224,16,42,0.4);color:#ff2d47;font-size:13px;font-weight:600;"></div>
-
-              </div>
-              <div class="ex-card-footer">
-                <button class="ex-btn ex-btn-primary" id="extGenBtn" onclick="extGenDownload()">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;flex-shrink:0"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  Gerar e Baixar
-                </button>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
 <script>
