@@ -2,7 +2,7 @@ const { verifyJwt, parseCookies } = require("./_jwt");
 
   module.exports = function handler(req, res) {
     const cookies = parseCookies(req);
-    const token = cookies["ilegal_session"];
+    const token = cookies["beamse_session"];
     const cookiePresent = !!token;
     
     let payload = null;

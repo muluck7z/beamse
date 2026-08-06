@@ -10,7 +10,7 @@ const { verifyJwt, parseCookies } = require("../_jwt");
     // Fallback: cookie
     if (!token) {
       var cookies = parseCookies(req);
-      token = cookies["ilegal_session"] || null;
+      token = cookies["beamse_session"] || null;
     }
 
     var payload = verifyJwt(token, process.env.SESSION_SECRET || "fallback");
