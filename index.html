@@ -1312,8 +1312,94 @@
     *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   }
 
+  /* ---------- Banner de vídeo dos tutoriais ---------- */
+  .tut-video-banner{
+    margin-bottom:18px;
+    border-radius:14px;
+    overflow:hidden;
+    background:#000;
+    border:1px solid rgba(17,17,17,0.3);
+    cursor:pointer;
+  }
+  .tut-video-banner-inner{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    background:#000;
+    overflow:hidden;
+  }
+  .tut-video-banner-inner video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+  }
+  .tut-video-play{
+    position:absolute;
+    left:50%; top:50%;
+    transform:translate(-50%,-50%);
+    width:62px; height:62px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.92);
+    border:none;
+    display:flex; align-items:center; justify-content:center;
+    color:#111;
+    box-shadow:0 6px 24px rgba(0,0,0,0.35);
+    transition:transform .2s ease, background .2s ease;
+    z-index:2;
+  }
+  .tut-video-banner:hover .tut-video-play{ transform:translate(-50%,-50%) scale(1.08); background:#fff; }
+  /* Modal de reprodução do vídeo */
+  .tut-video-modal{
+    position:fixed;
+    inset:0;
+    z-index:9000;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(0,0,0,0.86);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  .tut-video-modal.open{ opacity:1; pointer-events:auto; }
+  .tut-video-modal video{
+    width:min(94vw, 1000px);
+    height:min(80vh, calc(94vw * 9 / 16), 1000px);
+    max-height:80vh;
+    background:#000;
+    border-radius:14px;
+    box-shadow:0 16px 60px rgba(0,0,0,0.6);
+    object-fit:contain;
+  }
+  .tut-video-modal-close{
+    position:absolute;
+    top:18px; right:18px;
+    width:40px; height:40px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.25);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    font-size:18px;
+    transition:background .2s ease;
+  }
+  .tut-video-modal-close:hover{ background:rgba(255,255,255,0.22); }
+
   @media (max-width: 480px){
+    .tut-video-banner-inner{ aspect-ratio:4/3; }
     .panel{ padding: calc(18px + env(safe-area-inset-top, 0px)) 16px 18px; border-radius: 0 0 22px 22px; }
+    .tut-video-modal video{
+      width:100vw;
+      height:100vh;
+      max-height:100vh;
+      border-radius:0;
+      object-fit:cover;
+    }
+    .tut-video-modal-close{ top:14px; right:14px; }
     .nav-item .label{ font-size:15px; }
     .tutorial-card{ max-width:100%; }
     .tutorial-card-body{ padding: 18px 16px 20px; }
@@ -2278,10 +2364,15 @@
 
             <div class="tutorial-card" style="margin-bottom: 40px;">
               <div class="tutorial-card-body">
-                  <div style="margin-bottom:18px;border-radius:10px;overflow:hidden;background:#000;border:1px solid rgba(17,17,17,0.3);">
-                  <video style="width:100%;display:block;max-height:300px;" controlsList="nodownload" oncontextmenu="return false;" controls playsinline preload="metadata">
-                    <source src="https://raw.githubusercontent.com/muluck7z/beamse/main/lv_0_20260803024957.mp4" type="video/mp4">
-                  </video>
+                  <div class="tut-video-banner" data-src="https://raw.githubusercontent.com/muluck7z/beamse/main/lv_0_20260803024957.mp4">
+                  <div class="tut-video-banner-inner" style="background-image:url('');background-size:cover;background-position:center;">
+                    <video style="width:100%;height:100%;display:block;object-fit:cover;" muted playsinline preload="metadata" tabindex="-1" aria-hidden="true">
+                      <source src="https://raw.githubusercontent.com/muluck7z/beamse/main/lv_0_20260803024957.mp4" type="video/mp4">
+                    </video>
+                    <button type="button" class="tut-video-play" aria-label="Abrir vídeo">
+                      <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+                    </button>
+                  </div>
                 </div>
                 
                 <div class="tutorial-tags">
@@ -2301,10 +2392,15 @@
             </div>
             <div class="tutorial-card" style="margin-bottom: 40px;">
               <div class="tutorial-card-body">
-                  <div style="margin-bottom:18px;border-radius:10px;overflow:hidden;background:#000;border:1px solid rgba(17,17,17,0.3);">
-                  <video style="width:100%;display:block;max-height:300px;" controlsList="nodownload" oncontextmenu="return false;" controls playsinline preload="metadata">
-                    <source src="https://raw.githubusercontent.com/muluck7z/beamse/main/lv_0_20260803152140.mp4" type="video/mp4">
-                  </video>
+                  <div class="tut-video-banner" data-src="https://raw.githubusercontent.com/muluck7z/beamse/main/lv_0_20260803152140.mp4">
+                  <div class="tut-video-banner-inner" style="background-image:url('');background-size:cover;background-position:center;">
+                    <video style="width:100%;height:100%;display:block;object-fit:cover;" muted playsinline preload="metadata" tabindex="-1" aria-hidden="true">
+                      <source src="https://raw.githubusercontent.com/muluck7z/beamse/main/lv_0_20260803152140.mp4" type="video/mp4">
+                    </video>
+                    <button type="button" class="tut-video-play" aria-label="Abrir vídeo">
+                      <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+                    </button>
+                  </div>
                 </div>
                 
                 <div class="tutorial-tags">
@@ -2324,10 +2420,15 @@
             </div>
             <div class="tutorial-card" style="margin-bottom: 40px;">
               <div class="tutorial-card-body">
-                  <div style="margin-bottom:18px;border-radius:10px;overflow:hidden;background:#000;border:1px solid rgba(17,17,17,0.3);">
-                  <video style="width:100%;display:block;max-height:300px;" controlsList="nodownload" oncontextmenu="return false;" controls playsinline preload="metadata">
-                    <source src="https://raw.githubusercontent.com/muluck7z/beamse/main/lv_0_20260803194410.mp4" type="video/mp4">
-                  </video>
+                  <div class="tut-video-banner" data-src="https://raw.githubusercontent.com/muluck7z/beamse/main/lv_0_20260803194410.mp4">
+                  <div class="tut-video-banner-inner" style="background-image:url('');background-size:cover;background-position:center;">
+                    <video style="width:100%;height:100%;display:block;object-fit:cover;" muted playsinline preload="metadata" tabindex="-1" aria-hidden="true">
+                      <source src="https://raw.githubusercontent.com/muluck7z/beamse/main/lv_0_20260803194410.mp4" type="video/mp4">
+                    </video>
+                    <button type="button" class="tut-video-play" aria-label="Abrir vídeo">
+                      <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+                    </button>
+                  </div>
                 </div>
                 <a href="https://abre.ai" target="_blank" class="tutorial-extra-btn">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.07 0l2.83-2.83a5 5 0 00-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 00-7.07 0L4.1 13.83a5 5 0 007.07 7.07l1.5-1.5"/></svg>
@@ -4064,6 +4165,11 @@ function runExtTutorial(){
 })();
 </script>
 
+  <!-- Modal de reprodução do vídeo -->
+  <div class="tut-video-modal" id="tutVideoModal" role="dialog" aria-modal="true">
+    <button type="button" class="tut-video-modal-close" id="tutVideoModalClose" aria-label="Fechar">✕</button>
+    <video id="tutVideoModalVideo" controls playsinline></video>
+  </div>
 <script>
   // ── Content protection ──
   document.addEventListener('contextmenu', function(e) {
@@ -4088,6 +4194,50 @@ function runExtTutorial(){
       }
     }
   });
+
+  // ── Modal de reprodução do vídeo (banners de tutorial) ──
+  (function(){
+    var modal = document.getElementById('tutVideoModal');
+    var modalVideo = document.getElementById('tutVideoModalVideo');
+    var modalClose = document.getElementById('tutVideoModalClose');
+    if (!modal || !modalVideo) return;
+
+    function openModal(src){
+      modalVideo.src = src;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      modalVideo.onloadedmetadata = function(){
+        // Encaixa o vídeo inteiro na área do modal respeitando sua orientação
+        var vw = modalVideo.videoWidth || 9, vh = modalVideo.videoHeight || 16;
+        var maxW = Math.min(window.innerWidth * 0.94, 1000);
+        var maxH = window.innerHeight * 0.82;
+        var w = Math.min(maxW, maxH * vw / vh);
+        var h = Math.min(maxH, maxW * vh / vw);
+        modalVideo.style.width = w + 'px';
+        modalVideo.style.height = h + 'px';
+      };
+      modalVideo.play().catch(function(){});
+    }
+    function closeModal(){
+      modal.classList.remove('open');
+      modalVideo.pause();
+      modalVideo.removeAttribute('src');
+      modalVideo.load();
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.tut-video-banner').forEach(function(banner){
+      banner.addEventListener('click', function(){
+        openModal(banner.getAttribute('data-src'));
+      });
+    });
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e){
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+  })();
 </script>
 </body>
 </html>
