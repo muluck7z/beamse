@@ -1069,7 +1069,7 @@
   .tab-panels{ margin-top: 30px; text-align:left; max-width:100%; min-width:0; }
   .tab-panel{ display:none; }
   .tab-panel.active{ display:block; animation: panel-fade .35s ease; }
-  @keyframes panel-fade{ from{ opacity:0; transform: translateY(6px);} to{ opacity:1; transform: translateY(0);} }
+  @keyframes panel-fade{ from{ opacity:0;} to{ opacity:1;} }
 
   .link-list{
     display:flex;
@@ -2580,7 +2580,7 @@
           </div>
 
           <!-- Método 02: Bypass (independente) -->
-          <div class="tab-panel active" data-panel="bypass">
+          <div class="tab-panel" data-panel="bypass">
             <!-- Método 02: Bypass -->
             <div class="site-section-header" style="margin-top:48px;">
               <span class="site-section-badge">02</span>
