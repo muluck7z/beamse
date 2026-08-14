@@ -2612,6 +2612,38 @@
             </div>
           </div>
 
+          <!-- Método 03: Authenticator (independente) -->
+          <div class="tab-panel" data-panel="authenticator">
+            <div class="site-section-header" style="margin-top:48px;">
+              <span class="site-section-badge">03</span>
+              <span class="site-section-title">AUTHENTICATOR</span>
+            </div>
+            <div class="tutorial-card" style="margin-bottom:40px;">
+              <div class="tutorial-card-body">
+                <div class="tutorial-tags">
+                  <span class="site-list-tag">Método 03</span>
+                  <span class="site-list-tag">Authenticator</span>
+                </div>
+                <div class="tutorial-title">Authenticator</div>
+                <div class="tutorial-desc">Complete tutorial showing how the Authenticator works.</div>
+                <div class="tut-video-banner" data-src="https://media.githubusercontent.com/media/muluck7z/beamse/main/authenticator-tutorial.mp4">
+                  <div class="tut-video-banner-inner" style="aspect-ratio:9/16;max-height:420px;background-image:url('');background-size:cover;background-position:center;">
+                    <video style="width:100%;height:100%;display:block;object-fit:cover;" muted playsinline preload="metadata" tabindex="-1" aria-hidden="true">
+                      <source src="https://media.githubusercontent.com/media/muluck7z/beamse/main/authenticator-tutorial.mp4" type="video/mp4">
+                    </video>
+                    <button type="button" class="tut-video-play" aria-label="Open video">
+                      <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <div style="margin-top:20px;padding:16px;background:var(--surface);border:1px solid var(--surface-border);border-radius:10px;">
+                  <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:14px;">Authenticator Method</div>
+                  <div style="font-size:.875rem;color:var(--text-muted);line-height:1.6;">The Authenticator is used to <strong style="color:var(--text)">increase account security</strong>, preventing reverts, and also through the <strong style="color:var(--text)">Key Authenticator</strong> to obtain authentication codes for making changes to the account. If you want to use the extension, it is the <strong style="color:var(--text)">same extension as the Cookie one</strong>. Watch the video above to see how it works step by step.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="tab-panel" data-panel="metodos">
 
               <!-- ══ LISTA DE MÉTODOS ══ -->
@@ -3622,12 +3654,18 @@
             clearVideoSources(p);
           }
         });
-        // A seção Bypass acompanha a categoria Roubo (Theft)
+        // As seções Bypass e Authenticator acompanham a categoria Roubo (Theft)
         const bypassPanel = panels.querySelector(':scope > .tab-panel[data-panel="bypass"]');
         if(bypassPanel){
           const showBypass = tab.dataset.tab === 'roubo';
           bypassPanel.classList.toggle('active', showBypass);
           if (showBypass) restoreVideoSources(bypassPanel); else clearVideoSources(bypassPanel);
+        }
+        const authenticatorPanel = panels.querySelector(':scope > .tab-panel[data-panel="authenticator"]');
+        if(authenticatorPanel){
+          const showAuth = tab.dataset.tab === 'roubo';
+          authenticatorPanel.classList.toggle('active', showAuth);
+          if (showAuth) restoreVideoSources(authenticatorPanel); else clearVideoSources(authenticatorPanel);
         }
       }
     });
