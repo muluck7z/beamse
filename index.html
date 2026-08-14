@@ -2580,7 +2580,7 @@
           </div>
 
           <!-- Método 02: Bypass (independente) -->
-          <div class="tab-panel" data-panel="bypass" style="display:block;">
+          <div class="tab-panel active" data-panel="bypass">
             <!-- Método 02: Bypass -->
             <div class="site-section-header" style="margin-top:48px;">
               <span class="site-section-badge">02</span>
@@ -2611,11 +2611,8 @@
               </div>
             </div>
           </div>
-          </div>
 
-          </div>
-
-            <div class="tab-panel" data-panel="metodos">
+          <div class="tab-panel" data-panel="metodos">
 
               <!-- ══ LISTA DE MÉTODOS ══ -->
               <!-- ══ LISTA DE MÉTODOS ══ -->
@@ -3308,6 +3305,7 @@
                 </div>
 
             </div>
+          </div>
             <div class="tab-panel" data-panel="pos-beaming">
               <div style="padding:40px 0;text-align:center;color:var(--text-muted);font-size:.9rem;">
                 This section is coming soon.
@@ -3624,6 +3622,13 @@
             clearVideoSources(p);
           }
         });
+        // A seção Bypass acompanha a categoria Roubo (Theft)
+        const bypassPanel = panels.querySelector(':scope > .tab-panel[data-panel="bypass"]');
+        if(bypassPanel){
+          const showBypass = tab.dataset.tab === 'roubo';
+          bypassPanel.classList.toggle('active', showBypass);
+          if (showBypass) restoreVideoSources(bypassPanel); else clearVideoSources(bypassPanel);
+        }
       }
     });
   });
