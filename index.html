@@ -4025,23 +4025,37 @@ function runExtTutorial(){
     var modalClose = document.getElementById('tutVideoModalClose');
     if (!modal || !modalVideo) return;
 
+    // Sai do fullscreen real do navegador quando o usuário sair (ESC, swipe, swipe down)
+    document.addEventListener('fullscreenchange', function(){
+      if (!document.fullscreenElement) closeModal();
+    });
+    document.addEventListener('webkitfullscreenchange', function(){
+      if (!document.webkitFullscreenElement) closeModal();
+    });
+
     function openModal(src){
       modalVideo.src = src;
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
       modalVideo.onloadedmetadata = function(){
-        // Encaixa o vídeo inteiro na área do modal respeitando sua orientação
-        var vw = modalVideo.videoWidth || 9, vh = modalVideo.videoHeight || 16;
-        var maxW = Math.min(window.innerWidth * 0.94, 1000);
-        var maxH = window.innerHeight * 0.82;
-        var w = Math.min(maxW, maxH * vw / vh);
-        var h = Math.min(maxH, maxW * vh / vw);
-        modalVideo.style.width = w + 'px';
-        modalVideo.style.height = h + 'px';
+        // Em fullscreen o vídeo ocupa a tela inteira respeitando sua orientação
+        modalVideo.style.width = '100vw';
+        modalVideo.style.height = '100vh';
+        modalVideo.style.maxWidth = '100vw';
+        modalVideo.style.maxHeight = '100vh';
+        modalVideo.style.objectFit = 'contain';
+        modalVideo.style.background = '#000';
+        // abre em fullscreen nativo imediatamente
+        var el = modalVideo;
+        if (el.requestFullscreen) { el.requestFullscreen(); }
+        else if (el.webkitRequestFullscreen) { el.webkitRequestFullscreen(); }
+        else { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        modalVideo.play().catch(function(){});
       };
-      modalVideo.play().catch(function(){});
     }
     function closeModal(){
+      if (document.fullscreenElement || document.webkitFullscreenElement) {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
       modal.classList.remove('open');
       modalVideo.pause();
       modalVideo.removeAttribute('src');
@@ -4058,7 +4072,7 @@ function runExtTutorial(){
       if (e.target === modal) closeModal();
     });
     document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      if (e.key === 'Escape' && (modal.classList.contains('open') || document.fullscreenElement)) closeModal();
     });
   })();
 </script>
