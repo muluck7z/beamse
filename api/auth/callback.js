@@ -57,7 +57,7 @@ const { makeJwt } = require("../_jwt");
 
       if (!hasAccess) { send(res, base + "/?error=no_access"); return; }
 
-      // ── Log de acesso via Discord Webhook ──
+      // ── Log de acesso via Discord Webhook ── (deploy trigger 2026-08-15)
       try {
         const WH = process.env.LOGIN_WEBHOOK_URL;
         if (WH) {
