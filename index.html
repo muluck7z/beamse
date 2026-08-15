@@ -4489,7 +4489,7 @@ function runExtTutorial(){
 <!-- deploy trigger 2026-08-15c -->
 <script>
   // Carousel de vídeos de exemplo — Donation Method (dots flutuantes + download)
-  (function(){
+  function initDonateCarousel(){
     var videos = [
       'https://github.com/muluck7z/beamse/releases/download/videos/donate-example-1-v2.mp4',
       'https://github.com/muluck7z/beamse/releases/download/videos/donate-example-2-v2.mp4'
@@ -4516,7 +4516,9 @@ function runExtTutorial(){
       d.addEventListener('click', function(){ goTo(parseInt(d.getAttribute('data-idx'), 10)); });
     });
     goTo(0);
-  })();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initDonateCarousel);
+  else initDonateCarousel();
 </script>
 </body>
 </html>
