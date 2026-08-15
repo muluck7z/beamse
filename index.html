@@ -84,8 +84,9 @@
     padding: 22px clamp(20px, 5vw, 56px) 20px;
     z-index:9999;
     transition: opacity .2s ease, visibility .2s ease;
-    /* Fundo sólido translúcido (sem backdrop-filter/transparente) para evitar glitch de espelhamento no Android */
-    background: rgba(250, 250, 251, 0.92);
+    background: linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.015) 70%, transparent 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--surface-border);
     border-radius: 0 0 26px 26px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.08);
