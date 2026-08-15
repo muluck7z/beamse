@@ -1854,7 +1854,7 @@
   <script>
     // Verificação Discord OAuth — JWT guardado no localStorage (beamse_jwt)
     (function() {
-      var hash = window.location.hash;
+            var hash = window.location.hash;
       if (hash && hash.startsWith('#jwt=')) {
         var hashJwt = decodeURIComponent(hash.slice(5));
         if (hashJwt) {
@@ -1862,7 +1862,6 @@
           history.replaceState(null, '', window.location.pathname);
         }
       }
-
       var tkn = localStorage.getItem('beamse_jwt');
       var activeView = localStorage.getItem('beamse_active_view') || 'dashboard';
 
@@ -3913,10 +3912,10 @@
           lwBtn.innerHTML = '<span style="display:flex;align-items:center;gap:10px;font-family:\'Space Grotesk\',sans-serif;font-weight:700;font-size:14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ' + username + ' — Leave</span>';
           lwBtn.setAttribute('role', 'button');
         }
-        if (user && user.userId && avatarBtn) {
-          var avatarUrl = user.avatar
-            ? 'https://cdn.discordapp.com/avatars/' + user.userId + '/' + user.avatar + '.png?size=128'
-            : 'https://cdn.discordapp.com/embed/avatars/' + (parseInt(user.userId) % 6) + '.png';
+        if (userObj && userObj.userId && avatarBtn) {
+          var avatarUrl = userObj.avatar
+            ? 'https://cdn.discordapp.com/avatars/' + userObj.userId + '/' + userObj.avatar + '.png?size=128'
+            : 'https://cdn.discordapp.com/embed/avatars/' + (parseInt(userObj.userId) % 6) + '.png';
           avatarBtn.innerHTML = '<img src="' + avatarUrl + '" alt="" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
           avatarBtn.style.padding = '0';
           avatarBtn.style.overflow = 'hidden';
