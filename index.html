@@ -2176,6 +2176,48 @@
     font-size:14.5px; color:var(--text-muted); line-height:1.5; max-width:600px;
   }
   .theft-panel{ isolation:isolate; }
+
+  /* ── Methods category: isolated rewrite classes ── */
+  .methods-panel{ isolation:isolate; }
+  .methods-card{ isolation:isolate; }
+  .methods-icon{
+    flex-shrink:0; width:64px; height:64px; border-radius:16px;
+    background:var(--surface); border:1px solid var(--surface-border);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .methods-body{ flex:1; min-width:0; }
+  .methods-title{
+    font-family:'Space Grotesk', sans-serif; font-size:26px; font-weight:700;
+    color:var(--text); margin-bottom:18px;
+  }
+  .methods-desc{
+    font-size:14.5px; color:var(--text-muted); line-height:1.5; max-width:600px;
+  }
+  .methods-tag{
+    display:inline-block; padding:5px 12px; border-radius:999px;
+    background:rgba(17,17,17,0.12); border:1px solid rgba(17,17,17,0.4);
+    color:var(--red-glow); font-size:11.5px; font-weight:700; letter-spacing:0.06em;
+    margin-bottom:10px;
+  }
+  .methods-btn{
+    display:flex; align-items:center; gap:10px; padding:13px 22px; border-radius:999px;
+    max-width:100%; box-sizing:border-box; word-break:break-all; white-space:normal;
+    background:#e4e4e7; border:1px solid rgba(17,17,17,0.45); color:var(--red-glow);
+    font-family:'Inter', sans-serif; font-size:15px; font-weight:700;
+    text-decoration:none; cursor:pointer;
+    transition:background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .methods-btn:hover{ background:#e0e0e3; border-color:var(--red-glow); }
+  .methods-btn:active{ transform:scale(0.97); }
+  .methods-back-btn{
+    display:flex; align-items:center; gap:8px; background:none; border:none;
+    color:var(--text-muted); font-size:.85rem; font-family:'Inter',sans-serif;
+    cursor:pointer; margin-bottom:24px; padding:0;
+  }
+  .methods-detail-card{
+    border-radius:18px; overflow:hidden; background:var(--surface);
+    border:1px solid var(--surface-border);
+  }
 </style>
 
   <div id="login-wall">
@@ -2700,19 +2742,19 @@
             </div>
           </div>
 
-          <div class="tab-panel" data-panel="metodos">
+          <div class="methods-panel tab-panel" data-panel="metodos" style="isolation:isolate;">
 
               <!-- ══ LISTA DE MÉTODOS ══ -->
               <!-- ══ LISTA DE MÉTODOS ══ -->
               <div id="metodos-list">
                 <!-- Método 01: Condo -->
-                <div class="site-list-card" >
-                  <div class="site-list-icon">
+                <div class="methods-card site-list-card" style="isolation:isolate;">
+                  <div class="methods-icon site-list-icon">
                     <span style="font-family:'Arial Black',Arial,sans-serif;font-size:20px;font-weight:900;color:var(--red-glow);line-height:1;">+18</span>
                   </div>
-                  <div class="site-list-body">
+                  <div class="methods-body site-list-body">
                     <span class="site-list-tag">Método 01</span>
-                    <div class="site-list-title">Condo Method</div>
+                    <div class="methods-title site-list-title">Condo Method</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Posting</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Viral</span>
@@ -2720,7 +2762,7 @@
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">18+</span>
                     </div>
                     <div class="tutorial-desc">Post Roblox 18+ games (Condo) on TikTok and YouTube and attract them to your Discord community where your fake links will be.</div>
-                    <button class="site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('condo')">
+                    <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('condo')">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                       <span>View full method</span>
                     </button>
@@ -2728,13 +2770,13 @@
                 </div>
 
                 <!-- Método 02: UGC -->
-                <div class="site-list-card" >
-                  <div class="site-list-icon">
+                <div class="methods-card site-list-card" style="isolation:isolate;">
+                  <div class="methods-icon site-list-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red-glow)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
                   </div>
-                  <div class="site-list-body">
+                  <div class="methods-body site-list-body">
                     <span class="site-list-tag">Método 02</span>
-                    <div class="site-list-title">UGC Method</div>
+                    <div class="methods-title site-list-title">UGC Method</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Social</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Viral</span>
@@ -2742,7 +2784,7 @@
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Op</span>
                     </div>
                     <div class="tutorial-desc">Post expensive or rare items like Korblox and Headless (at affordable prices) on TikTok and attract them to your fake group or game.</div>
-                    <button class="site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('ugc')">
+                    <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('ugc')">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                       <span>View full method</span>
                     </button>
@@ -2750,17 +2792,17 @@
                 </div>
 
                 <!-- Método 03: Doação -->
-                <div class="site-list-card" >
-                  <div class="site-list-icon">
+                <div class="methods-card site-list-card" style="isolation:isolate;">
+                  <div class="methods-icon site-list-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red-glow)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M20 12v10H4V12"/>
                       <path d="M2 7h20v5H2z"/>
                       <path d="M12 22V7"/>
                     </svg>
                   </div>
-                  <div class="site-list-body">
+                  <div class="methods-body site-list-body">
                     <span class="site-list-tag">Método 03</span>
-                    <div class="site-list-title">Donation Method</div>
+                    <div class="methods-title site-list-title">Donation Method</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Social</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Viral</span>
@@ -2768,7 +2810,7 @@
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Op</span>
                     </div>
                     <div class="tutorial-desc">Post Robux or item giveaway videos on TikTok and attract viewers to your fake profile, server, or group.</div>
-                    <button class="site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('doacao')">
+                    <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('doacao')">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                       <span>View full method</span>
                     </button>
@@ -2776,8 +2818,8 @@
                 </div>
 
                 <!-- Método 04: Fake Extension -->
-                <div class="site-list-card" >
-                  <div class="site-list-icon">
+                <div class="methods-card site-list-card" style="isolation:isolate;">
+                  <div class="methods-icon site-list-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red-glow)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <circle cx="12" cy="12" r="10" />
                       <circle cx="8" cy="9" r="1.2" fill="var(--red-glow)" stroke="none"/>
@@ -2786,16 +2828,16 @@
                       <circle cx="9" cy="16" r="1.3" fill="var(--red-glow)" stroke="none"/>
                     </svg>
                   </div>
-                  <div class="site-list-body">
+                  <div class="methods-body site-list-body">
                     <span class="site-list-tag">Método 04</span>
-                    <div class="site-list-title">Fake Extension</div>
+                    <div class="methods-title site-list-title">Fake Extension</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Cookie</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Stealth</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Advanced</span>
                     </div>
                     <div class="tutorial-desc">Fake extension that silently captures the Roblox session cookie when installed. Virtually unknown outside BR.</div>
-                    <button class="site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('extensao')">
+                    <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('extensao')">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                       <span>View full method</span>
                     </button>
@@ -2803,24 +2845,24 @@
                 </div>
 
                 <!-- Método 05: Escravidão -->
-                <div class="site-list-card" >
-                  <div class="site-list-icon">
+                <div class="methods-card site-list-card" style="isolation:isolate;">
+                  <div class="methods-icon site-list-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red-glow)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                       <circle cx="9" cy="7" r="4"></circle>
                       <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                     </svg>
                   </div>
-                  <div class="site-list-body">
+                  <div class="methods-body site-list-body">
                     <span class="site-list-tag">Método 05</span>
-                    <div class="site-list-title">Exploitation Method</div>
+                    <div class="methods-title site-list-title">Exploitation Method</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Exploitation</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Extortion</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Contas</span>
                     </div>
                     <div class="tutorial-desc">Turn your victims into workers — have them collect accounts for you. Propose trades to return their account.</div>
-                    <button class="site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('escravidao')">
+                    <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('escravidao')">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                       <span>View full method</span>
                     </button>
@@ -2828,22 +2870,22 @@
                 </div>
 
                 <!-- Método 06: Facebook -->
-                <div class="site-list-card" >
-                  <div class="site-list-icon">
+                <div class="methods-card site-list-card" style="isolation:isolate;">
+                  <div class="methods-icon site-list-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red-glow)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                     </svg>
                   </div>
-                  <div class="site-list-body">
+                  <div class="methods-body site-list-body">
                     <span class="site-list-tag">Método 06</span>
-                    <div class="site-list-title">Facebook Método</div>
+                    <div class="methods-title site-list-title">Facebook Método</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Tradicional</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Social</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Blox Fruits</span>
                     </div>
                     <div class="tutorial-desc">Facebook is untapped territory for manual beaming. People are not used to scams there.</div>
-                    <button class="site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('facebook')">
+                    <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('facebook')">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                       <span>View full method</span>
                     </button>
@@ -2851,23 +2893,23 @@
                 </div>
 
                 <!-- Método 07: Auto Click -->
-                <div class="site-list-card" >
-                  <div class="site-list-icon">
+                <div class="methods-card site-list-card" style="isolation:isolate;">
+                  <div class="methods-icon site-list-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red-glow)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M4 4l7.07 16.97 2.51-7.39 7.39-2.51L4 4z"></path>
                       <path d="M13 13l6 6"></path>
                     </svg>
                   </div>
-                  <div class="site-list-body">
+                  <div class="methods-body site-list-body">
                     <span class="site-list-tag">Método 07</span>
-                    <div class="site-list-title">Auto Click</div>
+                    <div class="methods-title site-list-title">Auto Click</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Automation</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Efficient</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">AFK</span>
                     </div>
                     <div class="tutorial-desc">Automatically post trade offers without spending hours on your phone.</div>
-                    <button class="site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('autoclick')">
+                    <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('autoclick')">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                       <span>View full method</span>
                     </button>
@@ -2875,24 +2917,24 @@
                 </div>
 
                 <!-- Método 08: Blox Fruits -->
-                <div class="site-list-card" >
-                  <div class="site-list-icon">
+                <div class="methods-card site-list-card" style="isolation:isolate;">
+                  <div class="methods-icon site-list-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red-glow)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
                       <path d="M2 17l10 5 10-5"></path>
                       <path d="M2 12l10 5 10-5"></path>
                     </svg>
                   </div>
-                  <div class="site-list-body">
+                  <div class="methods-body site-list-body">
                     <span class="site-list-tag">Método 08</span>
-                    <div class="site-list-title">Blox Fruits Método</div>
+                    <div class="methods-title site-list-title">Blox Fruits Método</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Tradicional</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Social</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Trading</span>
                     </div>
                     <div class="tutorial-desc">Use trading sites to interact with other users. Perfect for scamming through direct communication.</div>
-                    <button class="site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('bloxfruits')">
+                    <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('bloxfruits')">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                       <span>View full method</span>
                     </button>
@@ -2900,22 +2942,22 @@
                 </div>
 
                 <!-- Método 09: Limited -->
-                <div class="site-list-card" >
-                  <div class="site-list-icon">
+                <div class="methods-card site-list-card" style="isolation:isolate;">
+                  <div class="methods-icon site-list-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--red-glow)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                     </svg>
                   </div>
-                  <div class="site-list-body">
+                  <div class="methods-body site-list-body">
                     <span class="site-list-tag">Método 09</span>
-                    <div class="site-list-title">Limited Método</div>
+                    <div class="methods-title site-list-title">Limited Método</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Tradicional</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Discord</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Social</span>
                     </div>
                     <div class="tutorial-desc">One of the best methods for stealing limiteds. Use RoPro and Rolimons to find victims with rare items and execute the scam via Discord.</div>
-                    <button class="site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('limiteds')">
+                    <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('limiteds')">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                       <span>View full method</span>
                     </button>
@@ -2928,14 +2970,14 @@
               <div id="metodos-detail" style="display:none;">
 
                 <!-- Botão Voltar fixo no topo -->
-                <button onclick="closeMethod()" style="display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--text-muted);font-size:.85rem;font-family:'Inter',sans-serif;cursor:pointer;margin-bottom:24px;padding:0;">
+                <button class="methods-back-btn" onclick="closeMethod()" style="display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--text-muted);font-size:.85rem;font-family:'Inter',sans-serif;cursor:pointer;margin-bottom:24px;padding:0;">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
                   Back to Methods
                 </button>
 
                 <!-- ─ Auto Click ─ -->
                 <div id="method-autoclick" style="display:none;">
-                  <div style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);">
+                  <div class="methods-detail-card" style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);">
                     <div class="method-video-wrap"><video style="width:100%;display:block;" controlsList="nodownload" oncontextmenu="return false;" controls playsinline preload="metadata">
                       <source src="https://cdn.discordapp.com/attachments/1512835381479866531/1512837138948030799/lv_0_20251114152653.mp4?ex=6a638161&is=6a622fe1&hm=707dbf5bd94a2317d42ecd68a9931f2c4c5047fce2fee918f79e010d0df79eab&" type="video/mp4">
                     </video></div>
@@ -2967,7 +3009,7 @@
 
                 <!-- ─ Blox Fruits Método ─ -->
                 <div id="method-bloxfruits" style="display:none;">
-                  <div style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
+                  <div class="methods-detail-card" style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
                     <div style="padding:22px 24px 24px;">
                       <div style="display:flex;gap:8px;margin-bottom:14px;">
                         <span class="site-list-tag">Método 08</span>
@@ -3025,7 +3067,7 @@
 
                 <!-- ─ Limited Método ─ -->
                 <div id="method-limiteds" style="display:none;">
-                  <div style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
+                  <div class="methods-detail-card" style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
                     <div style="padding:22px 24px 24px;">
                       <div style="display:flex;gap:8px;margin-bottom:14px;">
                         <span class="site-list-tag">Método 09</span>
@@ -3116,7 +3158,7 @@
 
                 <!-- ─ Facebook Método ─ -->
                 <div id="method-facebook" style="display:none;">
-                  <div style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
+                  <div class="methods-detail-card" style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
                     <div style="padding:22px 24px 24px;">
                       <div style="display:flex;gap:8px;margin-bottom:14px;">
                         <span class="site-list-tag">Método 06</span>
@@ -3163,7 +3205,7 @@
 
                 <!-- ─ Escravidão ─ -->
                 <div id="method-escravidao" style="display:none;">
-                  <div style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);">
+                  <div class="methods-detail-card" style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);">
                     <div class="method-video-wrap"><video style="width:100%;display:block;" controlsList="nodownload" oncontextmenu="return false;" controls playsinline preload="metadata">
                       <source src="https://cdn.discordapp.com/attachments/1512837142454468799/1512949585625092166/lv_0_20260606193813.mp4?ex=6a63415a&is=6a61efda&hm=9ce5b0aaac495b03eccb23b12e727fe8b2ab79ea9570a7cf29ad9854c8fae774&" type="video/mp4">
                     </video></div>
@@ -3195,7 +3237,7 @@
 
                 <!-- ─ Condo ─ -->
                 <div id="method-condo" style="display:none;">
-                  <div style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
+                  <div class="methods-detail-card" style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
                     <div style="padding:22px 24px 24px;">
                       <div style="display:flex;gap:8px;margin-bottom:14px;">
                         <span class="site-list-tag">Método 01</span>
@@ -3263,7 +3305,7 @@
 
                 <!-- ─ UGC ─ -->
                 <div id="method-ugc" style="display:none;">
-                  <div style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);">
+                  <div class="methods-detail-card" style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);">
                     <div class="method-video-wrap"><video style="width:100%;display:block;" controlsList="nodownload" oncontextmenu="return false;" controls playsinline preload="metadata">
                       <source src="https://github.com/muluck7z/Beaming/releases/download/media-v1/ugc-metodo.mp4" type="video/mp4">
                     </video></div>
@@ -3295,7 +3337,7 @@
 
                 <!-- ─ Doação ─ -->
                 <div id="method-doacao" style="display:none;">
-                  <div style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
+                  <div class="methods-detail-card" style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
                     <div style="padding:22px 24px 24px;">
                       <div style="display:flex;gap:8px;margin-bottom:14px;">
                         <span class="site-list-tag">Método 03</span>
@@ -3353,7 +3395,7 @@
 
                 <!-- ─ Fake Extension ─ -->
                 <div id="method-extensao" style="display:none;">
-                  <div style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
+                  <div class="methods-detail-card" style="border-radius:18px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);margin-bottom:16px;">
                     <div style="padding:22px 24px 24px;">
                       <div style="display:flex;gap:8px;margin-bottom:14px;">
                         <span class="site-list-tag">Método 04</span>
@@ -3396,7 +3438,7 @@
                         <!-- Card 5: Vermelho (Ação Final) -->
                         <div style="background:rgba(17,17,17,0.05);border:1px solid rgba(17,17,17,0.2);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
                           <p style="font-size:14px;line-height:1.6;color:var(--text);margin-bottom:16px;">To create your extension, go to Tools > Fake Extension and watch the video, or click the button below to go there directly.</p>
-                          <button class="site-list-btn" style="border:none;cursor:pointer;width:100%;justify-content:center;" onclick="closeMethod();">
+                          <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;width:100%;justify-content:center;" onclick="closeMethod();">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             <span>Go to Tools</span>
                           </button>
