@@ -1927,46 +1927,10 @@
             animation: rise 0.6s cubic-bezier(.16,.8,.24,1) both;
         }
 
-        #lw-banner-wrap {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 16px 16px 0 0;
-            margin-bottom: -2px;
-            border: 1px solid var(--surface-border);
-            border-bottom: none;
-        }
-
-        #lw-banner-wrap img {
-            width: 100%;
-            height: auto;
-            display: block;
-            pointer-events: none;
-            user-select: none;
-            filter: saturate(0.95) brightness(0.95) contrast(1.02);
-            transform: scale(1.02);
-        }
-
-        #lw-banner-wrap::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent 45%, rgba(247,247,248, 0.45) 100%);
-        }
-
-        #lw-banner-wrap::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            box-shadow: inset 0 0 36px 6px rgba(0,0,0,0.12);
-            pointer-events: none;
-        }
-
         #lw-outer {
             background: #fff;
             border: 1px solid var(--surface-border);
-            border-radius: 0 0 18px 18px;
+            border-radius: 18px;
             padding: 17px;
             box-shadow: 0 24px 50px -22px rgba(0,0,0,0.25);
         }
@@ -2143,11 +2107,6 @@
 
   <div id="login-wall">
     <div id="lw-wrap">
-
-      <!-- Banner -->
-      <div id="lw-banner-wrap">
-        <img src="/beamse-banner.jpg" alt="BEAMSE">
-      </div>
 
       <!-- Card de Login -->
       <div id="lw-outer">
