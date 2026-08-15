@@ -2755,13 +2755,13 @@
                   </div>
                   <div class="methods-body site-list-body">
                     
-                    <div class="methods-title site-list-title">Auto Click</div>
+                    <div class="methods-title site-list-title">Auto Message</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
+                      <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Discord Bot</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Automation</span>
-                      <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Efficient</span>
                       <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">AFK</span>
                     </div>
-                    <div class="tutorial-desc">Automatically post trade offers without spending hours on your phone.</div>
+                    <div class="tutorial-desc">Send automatic messages to Discord channels using a bot that posts at set intervals.</div>
                     <button class="methods-btn site-list-btn" style="border:none;cursor:pointer;margin-top:16px;" onclick="openMethod('autoclick')">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                       <span>View full method</span>
@@ -3257,10 +3257,69 @@
                     <div style="padding:22px 24px 24px;">
                       <div style="display:flex;gap:8px;margin-bottom:14px;">
                         
-                        <span class="site-list-tag">Automation</span>
+                        <span class="site-list-tag">Discord Bot</span>
                       </div>
-                      <div class="tutorial-title">Auto Click</div>
-                      <div class="tutorial-desc">Automatically post trade offers without spending hours on your phone. A ferramenta essencial para automatizar suas negociações e maximizar o beaming.</div>
+                      <div class="tutorial-title">Auto Message</div>
+                      <div class="tutorial-desc">A bot that sends automatic messages to Discord channels at set intervals — you just configure it and it keeps posting until you stop it.</div>
+
+                      <div style="display:flex;flex-direction:column;gap:16px;margin-top:20px;">
+
+                        <!-- Card 1 -->
+                        <div style="background:rgba(17,17,17,0.05);border:1px solid rgba(17,17,17,0.2);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                          <p style="font-size:14px;line-height:1.6;color:var(--text);margin:0 0 8px;font-weight:700;">What is it</p>
+                          <p style="font-size:14px;line-height:1.6;color:var(--text);margin:0;">This method is used to send automatic messages in Discord channels, mainly trade channels. Instead of spending minutes typing offers, the Beamse bot sends the messages automatically until you turn it off.</p>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div style="background:rgba(0,0,0,0.03);border:1px solid var(--surface-border);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                          <p style="font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 8px;font-weight:700;">Why it works</p>
+                          <p style="font-size:14px;line-height:1.6;color:var(--text-muted);margin:0;">While the bot keeps posting, many people can get interested in your offer and come to your DM. It works 24/7 while you stay AFK.</p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div style="background:rgba(17,17,17,0.05);border:1px solid rgba(17,17,17,0.2);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                          <p style="font-size:14px;line-height:1.6;color:var(--text);margin:0 0 8px;font-weight:700;">⚠️ Warning — use alt accounts only</p>
+                          <p style="font-size:14px;line-height:1.6;color:var(--text);margin:0;">Always use alternative accounts for this method. Self-bots go against Discord rules and can result in account punishment or banning.</p>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div style="background:rgba(0,0,0,0.03);border:1px solid var(--surface-border);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                          <p style="font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 8px;font-weight:700;">Step 1 — Start the bot</p>
+                          <p style="font-size:14px;line-height:1.6;color:var(--text-muted);margin:0;">In the Beamse server, run the command <strong>/automessage start</strong> in the <strong>cmd</strong> channel. A configuration panel like the one below will open.</p>
+                        </div>
+
+                        <!-- Card 5: Image of the bot panel -->
+                        <div style="background:rgba(0,0,0,0.03);border:1px solid var(--surface-border);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                          <p style="font-size:14px;line-height:1.6;color:var(--text-muted);margin-bottom:14px;">Auto Message configuration panel (Discord):</p>
+                          <img src="https://github.com/muluck7z/beamse/releases/download/videos/automessage-panel.jpg" alt="Auto Message configuration panel" style="width:100%;max-width:420px;border-radius:12px;display:block;margin:0 auto;border:1px solid var(--surface-border);">
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div style="background:rgba(17,17,17,0.05);border:1px solid rgba(17,17,17,0.2);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                          <p style="font-size:14px;line-height:1.6;color:var(--text);margin:0 0 8px;font-weight:700;">Step 2 — Token Account</p>
+                          <p style="font-size:14px;line-height:1.6;color:var(--text);margin:0;">Paste the Discord account token of the alt account. You can get it with a browser extension: search your browser for a "Discord token" extension, copy the credential and paste it into the bot.</p>
+                        </div>
+
+                        <!-- Card 7 -->
+                        <div style="background:rgba(0,0,0,0.03);border:1px solid var(--surface-border);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                          <p style="font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 8px;font-weight:700;">Step 3 — Channel ID</p>
+                          <p style="font-size:14px;line-height:1.6;color:var(--text-muted);margin:0;">Enable Developer Mode in Discord settings (Appearance &gt; Advanced), then right-click the target channel and select <strong>Copy ID</strong>. Paste it into the Channel ID field.</p>
+                        </div>
+
+                        <!-- Card 8 -->
+                        <div style="background:rgba(17,17,17,0.05);border:1px solid rgba(17,17,17,0.2);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                          <p style="font-size:14px;line-height:1.6;color:var(--text);margin:0 0 8px;font-weight:700;">Step 4 — Message &amp; timing</p>
+                          <p style="font-size:14px;line-height:1.6;color:var(--text);margin:0;">Type the message to be sent automatically (up to 4000 characters), then set the <strong>Minimum Time</strong> (at least 25s) and <strong>Maximum Time</strong> in seconds. The bot will pick a random interval between them for each message.</p>
+                        </div>
+
+                        <!-- Card 9 -->
+                        <div style="background:rgba(0,0,0,0.03);border:1px solid var(--surface-border);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                          <p style="font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 8px;font-weight:700;">Step 5 — Start &amp; control</p>
+                          <p style="font-size:14px;line-height:1.6;color:var(--text-muted);margin:0;">After filling in all the fields, submit and start the operation. You can stop the operation and check its status with the bot's control commands at any time.</p>
+                        </div>
+
+                      </div>
+
                       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px;padding-top:16px;border-top:1px solid var(--surface-border);">
                         <div><span style="font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;font-weight:700;display:block;margin-bottom:3px;">Author</span><span style="font-size:.88rem;color:var(--text);font-weight:600;">Muluck7z</span></div>
                         <div><span style="font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;font-weight:700;display:block;margin-bottom:3px;">Rated</span><span style="font-size:.88rem;color:var(--text);font-weight:600;">⭐ 4.8</span></div>
@@ -3270,10 +3329,10 @@
                       <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--surface-border);">
                         <span style="font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;font-weight:700;display:block;margin-bottom:8px;">Tags</span>
                         <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                          <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Discord Bot</span>
                           <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Automation</span>
                           <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">AFK</span>
                           <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Fast</span>
-                          <span class="site-list-tag" style="font-size:10px;padding:3px 10px;">Op</span>
                         </div>
                       </div>
                     </div>
