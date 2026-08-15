@@ -3430,15 +3430,15 @@
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                       Download
                     </a>
-                    <!-- Floating dots (bottom-center) -->
-                    <div style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:5;display:flex;gap:10px;pointer-events:auto;">
-                      <button type="button" class="donate-dot active" data-idx="0" aria-label="Video 1" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;padding:0;touch-action:manipulation;-webkit-tap-highlight-color:transparent;">
-                        <span style="display:block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.85);opacity:.6;transition:all .25s ease;pointer-events:none;"></span>
-                      </button>
-                      <button type="button" class="donate-dot" data-idx="1" aria-label="Video 2" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;padding:0;touch-action:manipulation;-webkit-tap-highlight-color:transparent;">
-                        <span style="display:block;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.85);opacity:.6;transition:all .25s ease;pointer-events:none;"></span>
-                      </button>
-                    </div>
+                  </div>
+                  <!-- Dots fora do vídeo (abaixo) -->
+                  <div id="donate-dots-row" style="display:flex;justify-content:center;gap:10px;margin-top:12px;">
+                    <button type="button" class="donate-dot active" data-idx="0" aria-label="Video 1" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;padding:0;touch-action:manipulation;-webkit-tap-highlight-color:transparent;">
+                      <span style="display:block;width:10px;height:10px;border-radius:50%;background:var(--surface-border);transition:all .25s ease;pointer-events:none;"></span>
+                    </button>
+                    <button type="button" class="donate-dot" data-idx="1" aria-label="Video 2" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer;padding:0;touch-action:manipulation;-webkit-tap-highlight-color:transparent;">
+                      <span style="display:block;width:10px;height:10px;border-radius:50%;background:var(--surface-border);transition:all .25s ease;pointer-events:none;"></span>
+                    </button>
                   </div>
                 </div>
 
@@ -4502,7 +4502,7 @@ function runExtTutorial(){
     var current = 0;
     var vEl = document.getElementById('donate-video');
     var dlEl = document.getElementById('donate-dl');
-    var dots = document.querySelectorAll('#donate-carousel .donate-dot');
+    var dots = document.querySelectorAll('#donate-dots-row .donate-dot');
     if (!vEl || !dots.length) return;
     function goTo(idx){
       if (idx === current || idx < 0 || idx >= videos.length) return;
@@ -4514,9 +4514,9 @@ function runExtTutorial(){
         d.classList.toggle('active', i === idx);
         var dot = d.querySelector('span');
         if (dot) {
-          dot.style.background = i === idx ? 'var(--red-glow)' : 'rgba(255,255,255,0.85)';
-          dot.style.transform = i === idx ? 'scale(1.35)' : 'scale(1)';
-          dot.style.opacity = i === idx ? '1' : '0.6';
+          dot.style.background = i === idx ? 'var(--red-glow)' : 'var(--surface-border)';
+          dot.style.transform = i === idx ? 'scale(1.4)' : 'scale(1)';
+          dot.style.opacity = i === idx ? '1' : '0.55';
         }
       });
     }
