@@ -1852,19 +1852,34 @@
   }
 </style>
   <script>
-    // Auth desativada — acesso direto sem verificação
+    // Verificação Discord OAuth — JWT guardado no localStorage (beamse_jwt)
     (function() {
+      var hash = window.location.hash;
+      if (hash && hash.startsWith('#jwt=')) {
+        var hashJwt = decodeURIComponent(hash.slice(5));
+        if (hashJwt) {
+          try { localStorage.setItem('beamse_jwt', hashJwt); } catch(e) {}
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
+      var tkn = localStorage.getItem('beamse_jwt');
       var activeView = localStorage.getItem('beamse_active_view') || 'dashboard';
-      document.documentElement.classList.add('is-authed');
-      var style = document.createElement('style');
-      style.id = 'early-auth-style';
-      style.innerHTML =
-        '#login-wall { display: none !important; }' +
-        '#site-topbar { display: flex !important; }' +
-        '#site-main { display: block !important; }' +
-        '.view { display: none !important; }' +
-        '#view-' + activeView + ' { display: flex !important; }';
-      document.head.appendChild(style);
+
+      if (tkn) {
+        document.documentElement.classList.add('is-authed');
+        var style = document.createElement('style');
+        style.id = 'early-auth-style';
+        style.innerHTML =
+          '#login-wall { display: none !important; }' +
+          '#site-topbar { display: flex !important; }' +
+          '#site-main { display: block !important; }' +
+          '.view { display: none !important; }' +
+          '#view-' + activeView + ' { display: flex !important; }';
+        document.head.appendChild(style);
+      } else {
+        document.documentElement.classList.add('is-guest');
+      }
     })();
   </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -1883,9 +1898,9 @@
             align-items: center;
             justify-content: center;
             background:
-                radial-gradient(700px 500px at 50% 62%, rgba(224, 16, 42, 0.22) 0%, transparent 68%),
-                radial-gradient(900px 600px at 15% 100%, rgba(122, 13, 28, 0.18) 0%, transparent 60%),
-                #050506;
+                radial-gradient(700px 500px at 50% 62%, rgba(17,17,17, 0.05) 0%, transparent 68%),
+                radial-gradient(900px 600px at 15% 100%, rgba(17,17,17, 0.04) 0%, transparent 60%),
+                var(--bg);
         }
 
         #login-wall.hidden { display: none !important; }
@@ -1900,8 +1915,8 @@
                 0deg,
                 transparent,
                 transparent 2px,
-                rgba(255, 255, 255, 0.025) 2px,
-                rgba(255, 255, 255, 0.025) 3px
+                rgba(17,17,17, 0.012) 2px,
+                rgba(17,17,17, 0.012) 3px
             );
         }
 
@@ -1918,7 +1933,7 @@
             overflow: hidden;
             border-radius: 16px 16px 0 0;
             margin-bottom: -2px;
-            border: 1px solid rgba(17,17,17, 0.3);
+            border: 1px solid var(--surface-border);
             border-bottom: none;
         }
 
@@ -1928,7 +1943,7 @@
             display: block;
             pointer-events: none;
             user-select: none;
-            filter: saturate(0.9) brightness(0.82) contrast(1.05);
+            filter: saturate(0.95) brightness(0.95) contrast(1.02);
             transform: scale(1.02);
         }
 
@@ -1936,7 +1951,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 45%, rgba(10, 5, 6, 0.55) 100%);
+            background: linear-gradient(to bottom, transparent 45%, rgba(247,247,248, 0.45) 100%);
         }
 
         #lw-banner-wrap::before {
@@ -1944,21 +1959,21 @@
             position: absolute;
             inset: 0;
             z-index: 2;
-            box-shadow: inset 0 0 36px 6px rgba(0,0,0,0.45);
+            box-shadow: inset 0 0 36px 6px rgba(0,0,0,0.12);
             pointer-events: none;
         }
 
         #lw-outer {
-            background: linear-gradient(180deg, rgba(224, 16, 42, 0.1), rgba(224, 16, 42, 0.05));
-            border: 1px solid rgba(17,17,17, 0.4);
+            background: #fff;
+            border: 1px solid var(--surface-border);
             border-radius: 0 0 18px 18px;
             padding: 17px;
-            box-shadow: 0 24px 50px -22px rgba(0,0,0,0.8);
+            box-shadow: 0 24px 50px -22px rgba(0,0,0,0.25);
         }
 
         #lw-inner {
-            background: rgba(8, 7, 8, 0.6);
-            border: 1px solid rgba(17,17,17, 0.18);
+            background: var(--bg);
+            border: 1px solid var(--surface-border);
             border-radius: 13px;
             padding: 15px;
             display: grid;
@@ -1977,8 +1992,8 @@
             border-radius: 50%;
             object-fit: cover;
             object-position: center 40%;
-            border: 2.5px solid rgba(10, 10, 12, 0.9);
-            box-shadow: 0 0 0 2px rgba(17,17,17, 0.8), 0 0 18px rgba(17,17,17, 0.5), 0 0 34px rgba(17,17,17, 0.18);
+            border: 2.5px solid #fff;
+            box-shadow: 0 0 0 2px var(--surface-border), 0 0 18px rgba(17,17,17, 0.12), 0 0 34px rgba(17,17,17, 0.06);
             pointer-events: none;
             user-select: none;
         }
@@ -2000,7 +2015,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 16px;
             font-weight: 700;
-            color: #f2f1f0;
+            color: var(--text);
             line-height: 1;
             letter-spacing: 0.01em;
         }
@@ -2008,7 +2023,7 @@
         #lw-check {
             width: 15px;
             height: 15px;
-            background: linear-gradient(145deg, #111111, #000000);
+            background: var(--text);
             border-radius: 4.5px;
             display: flex;
             align-items: center;
@@ -2017,9 +2032,9 @@
         }
 
         #lw-tag {
-            background: rgba(17,17,17, 0.14);
-            border: 1px solid rgba(17,17,17, 0.4);
-            color: #111111;
+            background: rgba(17,17,17, 0.08);
+            border: 1px solid var(--surface-border);
+            color: var(--text-muted);
             font-size: 9px;
             font-weight: 800;
             letter-spacing: 0.09em;
@@ -2044,22 +2059,22 @@
             color: var(--text-muted);
             font-family: 'Inter', sans-serif;
             padding-top: 2px;
-            border-top: 1px solid rgba(17,17,17, 0.14);
+            border-top: 1px solid var(--surface-border);
         }
 
         #lw-desc strong {
-            color: #111111;
+            color: var(--text);
             font-weight: 700;
         }
 
         /* Erro dinâmico — inserido via JS */
         #login-error {
             grid-column: 1 / -1;
-            background: rgba(17,17,17,0.09);
-            border: 1px solid rgba(17,17,17,0.28);
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
             border-radius: 10px;
             padding: 10px 13px;
-            font-size: 12px; color: #111111;
+            font-size: 12px; color: var(--text);
             font-family: 'Inter', sans-serif;
             line-height: 1.5;
         }
@@ -2073,17 +2088,17 @@
             justify-content: center;
             gap: 10px;
             padding: 14px 18px;
-            background: linear-gradient(180deg, rgba(17,17,17,0.18), rgba(17,17,17,0.08));
-            border: 1.5px solid rgba(17,17,17, 0.55);
+            background: linear-gradient(180deg, #eeeeef, #e4e4e7);
+            border: 1.5px solid rgba(17,17,17, 0.45);
             border-radius: 12px;
-            color: #fff;
+            color: var(--text);
             text-decoration: none;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             font-size: 14px;
             letter-spacing: 0.03em;
             overflow: hidden;
-            box-shadow: 0 8px 22px -10px rgba(17,17,17,0.55);
+            box-shadow: 0 8px 22px -10px rgba(0,0,0,0.25);
             transition: background .18s, border-color .18s, box-shadow .18s, transform .13s;
             cursor: pointer;
             animation: float-btn 2.6s ease-in-out infinite;
@@ -2093,15 +2108,15 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%);
+            background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%);
             transform: translateX(-120%);
             transition: transform .6s ease;
         }
 
         #lw-btn:hover {
-            background: linear-gradient(180deg, rgba(17,17,17,0.3), rgba(17,17,17,0.14));
-            border-color: rgba(17,17,17, 0.9);
-            box-shadow: 0 10px 30px -8px rgba(17,17,17,0.75);
+            background: linear-gradient(180deg, #e4e4e7, #dddde0);
+            border-color: var(--text);
+            box-shadow: 0 10px 30px -8px rgba(0,0,0,0.35);
             animation-play-state: paused;
         }
 
@@ -2158,7 +2173,7 @@
 
           <!-- Descrição -->
           <div id="lw-desc">
-            Somente membros verificados podem acessar ao nosso site, então volte ao nosso servidor e faça a sua verificação!
+            Only verified members can access our site. Make sure you are in the server and verified before signing in.
           </div>
 
           <!-- Erro dinâmico -->
@@ -2169,7 +2184,7 @@
             <svg width="18" height="14" viewBox="0 0 71 55" fill="none">
               <path d="M60.1 4.9A58.5 58.5 0 0 0 45.5.4a40 40 0 0 0-1.8 3.7 54.1 54.1 0 0 0-16.4 0A40 40 0 0 0 25.5.4 58.4 58.4 0 0 0 10.8 4.9C1.6 18.7-.9 32.2.3 45.5a58.9 58.9 0 0 0 18 9.1 44 44 0 0 0 3.8-6.2 38.3 38.3 0 0 1-6-2.9l1.5-1.1a42.1 42.1 0 0 0 36 0l1.5 1.1a38.4 38.4 0 0 1-6 2.9 43.8 43.8 0 0 0 3.8 6.2 58.7 58.7 0 0 0 18-9A58.6 58.6 0 0 0 60.1 4.9ZM23.7 37.3c-3.6 0-6.5-3.3-6.5-7.3s2.9-7.3 6.5-7.3 6.6 3.3 6.5 7.3c0 4-2.9 7.3-6.5 7.3Zm23.6 0c-3.6 0-6.5-3.3-6.5-7.3s2.9-7.3 6.5-7.3 6.6 3.3 6.5 7.3c0 4-2.9 7.3-6.5 7.3Z" fill="currentColor"/>
             </svg>
-            Entrar com Discord
+            Sign in with Discord
           </a>
 
         </div>
@@ -2179,7 +2194,7 @@
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;">
           <path d="M6 10V8a6 6 0 1112 0v2M5 10h14a1 1 0 011 1v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9a1 1 0 011-1z" stroke="currentColor" stroke-width="1.8"/>
         </svg>
-        Você precisa ter o cargo no servidor para acessar.
+        You need the required role in the server to access.
       </p>
     </div>
   </div>
@@ -3881,24 +3896,79 @@
     });
   }
 
-  // ══════════════════ AUTH DESATIVADA ══════════════════
+    // ══════════════════ AUTH: VERIFICAÇÃO DISCORD OAUTH ══════════════════
     (function() {
       var wall      = document.getElementById('login-wall');
       var topbar    = document.getElementById('site-topbar');
       var siteMain  = document.getElementById('site-main');
-      var logoutBtn = document.getElementById('logoutBtn');
+      var errorBox  = document.getElementById('login-error');
+      var lwBtn     = document.getElementById('lw-btn');
 
-      function showDashboard() {
+      const errorMessages = {
+        'no_access':   'You do not have the required role in the server. Verify in our Discord and try again.',
+        'auth_failed': 'Verification failed. Please try signing in with Discord again.',
+        'missing_code':'Something went wrong during sign-in. Please try again.',
+      };
+
+      function showWall(msgKey) {
         const earlyStyle = document.getElementById('early-auth-style');
         if(earlyStyle) earlyStyle.remove();
-        if(wall) wall.style.display = 'none';
-        if(topbar) topbar.style.display = 'flex';
-        if(siteMain) siteMain.style.display = 'block';
-        const savedView = localStorage.getItem('beamse_active_view') || 'dashboard';
-        showView(savedView);
+        try { localStorage.removeItem('beamse_jwt'); } catch(e) {}
+        if (wall) wall.style.display = 'flex';
+        if (topbar) topbar.style.display = 'none';
+        if (siteMain) siteMain.style.display = 'none';
+        if (errorBox) {
+          if (msgKey && errorMessages[msgKey]) {
+            errorBox.textContent = errorMessages[msgKey];
+            errorBox.style.display = 'block';
+          } else {
+            errorBox.style.display = 'none';
+          }
+        }
+        if (lwBtn) lwBtn.style.pointerEvents = 'auto';
       }
 
-      showDashboard();
+      function showDashboard(username) {
+        const earlyStyle = document.getElementById('early-auth-style');
+        if(earlyStyle) earlyStyle.remove();
+        if (wall) wall.style.display = 'none';
+        if (topbar) topbar.style.display = 'flex';
+        if (siteMain) siteMain.style.display = 'block';
+        const savedView = localStorage.getItem('beamse_active_view') || 'dashboard';
+        showView(savedView);
+        if (username && lwBtn) {
+          lwBtn.innerHTML = '<span style="display:flex;align-items:center;gap:10px;font-family:\'Space Grotesk\',sans-serif;font-weight:700;font-size:14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> ' + username + ' — Leave</span>';
+          lwBtn.setAttribute('role', 'button');
+        }
+      }
+
+      var tkn = localStorage.getItem('beamse_jwt');
+      if (!tkn) {
+        showWall(window.location.search.includes('error=') ?
+          (window.location.search.match(/error=([^&]+)/)||[])[1] : null);
+        history.replaceState(null, '', window.location.pathname);
+        return;
+      }
+
+      fetch('/api/auth/me', { headers: { 'Authorization': 'Bearer ' + tkn } })
+        .then(function(res) {
+          if (!res.ok) throw new Error('unauthorized');
+          return res.json();
+        })
+        .then(function(user) { showDashboard(user.username || 'User'); })
+        .catch(function() { showWall(); });
+
+      if (lwBtn) {
+        lwBtn.addEventListener('click', function(e) {
+          if (localStorage.getItem('beamse_jwt')) {
+            e.preventDefault();
+            try { localStorage.removeItem('beamse_jwt'); } catch(err) {}
+            fetch('/api/auth/logout', { method: 'POST' }).finally(function() {
+              window.location.reload();
+            });
+          }
+        });
+      }
 
       // Vibração no botão de login (touchstart = resposta mais rápida no mobile)
       document.querySelectorAll('button, a, [role="button"]').forEach(function(el) {
