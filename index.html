@@ -4251,6 +4251,23 @@ function runExtTutorial(){
     });
   })();
 </script>
+<script>
+(function(){
+  // ── Modern click sound (plays on any button / link interaction) ──
+  var clickSound = 'btn-click.mp3';
+  var snd = new Audio(clickSound);
+  snd.volume = 0.55;
+  snd.preload = 'auto';
+  document.addEventListener('pointerdown', function(e){
+    var t = e.target.closest('button, a, [role="button"], input[type="button"], input[type="submit"]');
+    if (!t) return;
+    try {
+      var c = snd.cloneNode(false);
+      c.volume = snd.volume;
+      c.play().catch(function(){});
+    } catch(err) {}
+  });
+})();
+</script>
 </body>
-
 </html>

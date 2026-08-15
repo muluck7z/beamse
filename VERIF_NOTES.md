@@ -1,24 +1,30 @@
-# Verificação Discord OAuth — Beamse (STATUS FINAL DOS TESTES)
+# Verificação Discord OAuth — Beamse (STATUS)
 
-## Implementação concluída
-1. Early script (<head>): hash #jwt= → localStorage 'beamse_jwt' → is-authed + early style; sem token → is-guest.
-2. Bloco final JS: fetch('/api/auth/me', Bearer tkn); ok → showDashboard(username) com lwBtn virando "username — Leave"; falha → showWall(msgKey) com mensagens em inglês (no_access/auth_failed/missing_code), remove early style e limpa token; logout via lwBtn (removeItem + POST /api/auth/logout + reload).
-3. showWall agora remove early-auth-style antes de exibir a wall (corrige bug onde wall ficava oculta por !important).
-4. Wall em tema claro Beamse (var(--bg), --surface-border, branco, #e4e4e7) e textos em inglês.
-5. API /api/ já existe e completa (discord.js, callback.js com GUILD_ID/ROLE_ID do env, me.js, logout.js, _jwt.js); vercel.json ok.
+## Tarefa atual: adicionar ícone de usuário na topbar (avatarBtn) + dropdown logout (igual Beaming ref)
 
-## Resultados dos testes Playwright (porta 8899 = http.server servindo /home/ubuntu/Beamse)
-- SEM TOKEN: wallVisible=true, topbar/main ocultos, guest=true ✓
-- COM TOKEN FAKE: showWall roda, remove item e early style, wallDisplay=flex ✓
-- COM TOKEN MOCK OK (/api/auth/me 200 via route): ls beamse_jwt salvo, wall none, topbar flex, main block, btnText "TestUser — Leave" ✓
-- Logout: click falhou no teste porque a wall ficou oculta (esperado após login bem-sucedido) — na produção real, o reload após logout reexibe a wall. Comportamento correto.
+## Feito
+1. HTML topbar (linha ~2208): adicionado account-wrap com avatarBtn (SVG pessoa), account-dropdown com logoutBtn ("Leave") ao lado do menuBtn. ✓
+2. CSS: .avatar-slot/.account-wrap/.account-dropdown/.dropdown-item já existiam no Beamse (convertidos ao tema claro; .avatar-slot.open e hover em cinza). ✓
+3. JS bloco AUTH (linha ~3909): showWall fecha dropdown; showDashboard(userObj) — recebe objeto user (userId/avatar/username), mostra foto Discord no avatarBtn; adicionados openAccountDropdown/closeAccountDropdown/toggle do avatarBtn/clique fora/logout via dropdown (POST /api/auth/logout + reload). ✓
+4. vercel.json e API /api/auth/* já existem e completos (GUILD/ROLE do env).
 
-## Teste de logout real: não necessário (reload garante estado correto).
+## BUG EM TESTE (a investigar)
+- Playwright: fetch manual de /api/auth/me retorna 200 JSON OK, mas o estado final fica wall=flex/topbar=none (showWall rodou).
+- A rota '**/api/auth/me' é chamada (confirmado por route handler).
+- Suspeita: exception silenciosa em algum .then ou o script roda MAS showDashboard lança (user.avatar null → avatarUrl usa embed; ok). OU: o early script do head salvou jwt no hash, o fetch roda, res.ok true, res.json() ok, showDashboard(user) roda e... pode ser que showDashboard lance porque 'user && user.userId && avatarBtn' é ok, mas 'lwBtn.innerHTML' com username 'TestUser' ok.
+- Verificar: test_avatar4.py mostra manual fetch OK mas STATE wall flex após 1.5s. Testar com console log dentro do script para achar onde para.
+- Nota: test_login_flow.py (antes dessas mudanças) FUNCIONOU com o mesmo mock.
 
-## Pendências
-1. Remover arquivos de teste (test_wall.py, test_hash.py, test_hash2.py, test_login_flow.py, mock_me.py, VERIF_NOTES.md pode ficar como documentação).
-2. Commit + push para origin (Beamse) e beamse-lower (beamse).
-3. Instruir usuário: adicionar no Vercel as env vars DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, DISCORD_GUILD_ID=1508799174122934423, DISCORD_ROLE_ID=1537962716239765504, SESSION_SECRET; registrar Redirect URI no Discord Developer Portal = https://<domínio>/api/auth/callback (o callback monta a URI dinamicamente pelo host de produção).
+## Testes anteriores (funcionando)
+- sem token: wall visível ✓; token fake: showWall com remoção ✓; mock login: dashboard abre (test_login_flow) ✓.
 
 ## IDs
 GUILD_ID = 1508799174122934423 ; ROLE_ID = 1537962716239765504
+SESSION_SECRET (gerada p/ usuário): 8f3a7c2e9b1d4f6a0e5c8b7d2f9a4e6c1b8d3f7a2e9c5b4d0f8a7e3c6b1d9f2a
+
+## Próximos passos
+1. Corrigir bug do teste (provável: algo no novo JS; inserir console.log para localizar).
+2. Commit + push (origin=Beamse, beamse-lower=beamse).
+3. Entregar: avatar na topbar junto ao menu hambúrguer, dropdown com Leave.
+
+## Referência Beaming: /home/ubuntu/beaming_ref (clonado), toggle do dropdown em linha ~3780-3805 do index.html de lá.
