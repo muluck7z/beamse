@@ -27,25 +27,22 @@
   *{ margin:0; padding:0; box-sizing:border-box; }
 
   html{ scroll-behavior:smooth; }
+  /* Mobile: scroll suave causa repaints com camadas incompletas no Chrome Android → desativa */
+  @media (hover: none), (pointer: coarse){
+    html{ scroll-behavior:auto; }
+  }
 
-  body{
+    body{
     background: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
     min-height:100vh;
+    min-height:100dvh; /* Chrome Android: evita recálculo de layout quando a barra de URL encolhe */
     overflow-x:hidden;
     position:relative;
-  }
-
-  /* ambient grain / noise glow */
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-      radial-gradient(600px 400px at 15% 90%, rgba(0,0,0,0.03), transparent 70%);
-    pointer-events:none;
-    z-index:0;
+    /* ambient grain / noise glow: fundo direto no body (sem camada fixed que causava glitches) */
+    background-image: radial-gradient(600px 400px at 15% 90%, rgba(0,0,0,0.03), transparent 70%);
+    background-attachment: local;
   }
 
   /* Remove o quadrado azul/outline em qualquer elemento ao clicar */
@@ -882,6 +879,7 @@
   /* ---------- Main views ---------- */
   .view{
     min-height:100vh;
+    min-height:100dvh; /* evita bounce de layout no Chrome Android durante o scroll */
     display:flex;
     align-items:center;
     justify-content:center;
