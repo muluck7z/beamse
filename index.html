@@ -4352,20 +4352,84 @@ function runExtTutorial(){
 </script>
 <script>
 (function(){
-  // ── Modern click sound (plays on any button / link interaction) ──
-  var clickSound = 'btn-click.mp3';
-  var snd = new Audio(clickSound);
-  snd.volume = 0.55;
-  snd.preload = 'auto';
+  // ── Modern click sound: Web Audio API + pre-decoded buffer (zero-latency, reliable) ──
+  var clickUrl = 'btn-click.mp3';
+  var audioCtx = null;
+  var clickBuffer = null;
+  var fallback = null;
+
+  function ensureCtx(){
+    if (!audioCtx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (AC) {
+        try { audioCtx = new AC(); }
+        catch(e){ audioCtx = null; }
+      }
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      try { audioCtx.resume(); } catch(e){}
+    }
+    return audioCtx;
+  }
+
+  // Pre-load: decode the tiny click into memory for instant playback
+  fetch(clickUrl, {cache: 'force-cache'}).then(function(r){
+    return r.arrayBuffer();
+  }).then(function(buf){
+    var ctx = ensureCtx();
+    if (ctx) {
+      ctx.decodeAudioData(buf.slice(0), function(decoded){
+        clickBuffer = decoded;
+      }, function(){
+        // decode failed → keep HTMLAudio fallback ready
+      });
+    }
+    // Fallback HTMLAudio always primed (needed for autoplay policy too)
+    fallback = new Audio(clickUrl);
+    fallback.volume = 0.55;
+    fallback.preload = 'auto';
+    try { fallback.load(); } catch(e){}
+  }).catch(function(){});
+
+  function playClick(){
+    var ctx = ensureCtx();
+    if (ctx && clickBuffer) {
+      try {
+        var src = ctx.createBufferSource();
+        src.buffer = clickBuffer;
+        var g = ctx.createGain();
+        g.gain.value = 0.55;
+        src.connect(g);
+        g.connect(ctx.destination);
+        src.start(0);
+        return;
+      } catch(e){}
+    }
+    // Fallback: HTMLAudioElement — reset currentTime so rapid clicks overlap
+    if (fallback) {
+      try {
+        fallback.currentTime = 0;
+        fallback.volume = 0.55;
+        fallback.play().catch(function(){});
+      } catch(e){}
+    }
+  }
+
+  // Global handler: plays on any interactive element the moment the finger/mouse touches
   document.addEventListener('pointerdown', function(e){
     var t = e.target.closest('button, a, [role="button"], input[type="button"], input[type="submit"]');
     if (!t) return;
-    try {
-      var c = snd.cloneNode(false);
-      c.volume = snd.volume;
-      c.play().catch(function(){});
-    } catch(err) {}
-  });
+    playClick();
+  }, {passive: true});
+
+  // Ensure AudioContext is unlocked by the very first user gesture (mobile)
+  function unlockOnce(){
+    ensureCtx();
+    document.removeEventListener('pointerdown', unlockOnce);
+    document.removeEventListener('touchstart', unlockOnce);
+    document.removeEventListener('mousedown', unlockOnce);
+  }
+  document.addEventListener('pointerdown', unlockOnce, {passive: true});
 })();
 </script>
 </body>
