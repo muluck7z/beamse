@@ -57,6 +57,43 @@ const { makeJwt } = require("../_jwt");
 
       if (!hasAccess) { send(res, base + "/?error=no_access"); return; }
 
+      // ── Log de acesso via Discord Webhook ──
+      try {
+        const WH = process.env.LOGIN_WEBHOOK_URL;
+        if (WH) {
+          const realIp =
+            (req.headers["x-real-ip"]) ||
+            (req.headers["x-forwarded-for"] || "").split(",")[0].trim() ||
+            req.socket?.remoteAddress || "unknown";
+          const username = user.global_name || user.username;
+          const avatarHash = user.avatar;
+          const avatarUrl = avatarHash
+            ? "https://cdn.discordapp.com/avatars/" + user.id + "/" + avatarHash + ".png?size=128"
+            : "https://cdn.discordapp.com/embed/avatars/" + (parseInt(user.id) % 6) + ".png";
+          await fetch(WH, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: "Beamse Login Log",
+              avatar_url: "https://cdn.discordapp.com/embed/avatars/0.png",
+              embeds: [{
+                title: "✅ New verified access",
+                color: 0x111111,
+                thumbnail: { url: avatarUrl },
+                fields: [
+                  { name: "User", value: "**" + username + "** (`" + user.id + "`)", inline: true },
+                  { name: "IP", value: "`" + realIp + "`", inline: true },
+                  { name: "Time", value: "<t:" + Math.floor(Date.now() / 1000) + ":f>", inline: true },
+                ],
+                footer: { text: "Beamse" },
+              }],
+            }),
+          }).catch(function(){});
+        }
+      } catch(e) {
+        console.error("Login webhook error:", e);
+      }
+
       const jwt = makeJwt(
         { userId: user.id, username: user.global_name || user.username, avatar: user.avatar || null, hasAccess },
         SECRET
