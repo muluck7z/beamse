@@ -3366,11 +3366,6 @@
                           <p style="font-size:14px;line-height:1.6;color:var(--text);margin:0;">Join groups that trade/sell items for a specific game — Blox Fruits for example. You can post your own offer or negotiate on other people's posts. Once a victim messages you privately, run your scam.</p>
                         </div>
 
-                        <!-- Card 4: Imagem de Referência (Cinza) -->
-                        <div style="background:rgba(0,0,0,0.03);border:1px solid var(--surface-border);border-radius:14px;padding:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);">
-                          <p style="font-size:14px;line-height:1.6;color:var(--text-muted);margin-bottom:12px;">You don't need to shorten or hide the link on Facebook — send it as-is. See a reference post below:</p>
-                        </div>
-
                       </div>
 
                       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;padding-top:14px;border-top:1px solid var(--surface-border);margin-top:20px;">
@@ -3424,18 +3419,21 @@
                     </div>
                   </div>
 
-                  <!-- Vídeos exemplo -->
+                  <!-- Vídeos exemplo (carrossel) -->
                   <div style="font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;">Video Examples</div>
-                  <div style="display:flex;flex-direction:row;gap:12px;flex-wrap:wrap;">
-                    <div style="flex:1;min-width:200px;border-radius:14px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);">
-                      <div class="method-video-wrap"><video style="width:100%;display:block;height:auto;max-height:280px;" controlsList="nodownload" oncontextmenu="return false;" controls playsinline preload="metadata">
-                        <source src="https://github.com/muluck7z/Beaming/releases/download/media-v1/donate-example-1.mp4" type="video/mp4">
-                      </video></div>
-                    </div>
-                    <div style="flex:1;min-width:200px;border-radius:14px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);">
-                      <div class="method-video-wrap"><video style="width:100%;display:block;height:auto;max-height:280px;" controlsList="nodownload" oncontextmenu="return false;" controls playsinline preload="metadata">
-                        <source src="https://github.com/muluck7z/Beaming/releases/download/media-v1/donate-example-2.mp4" type="video/mp4">
-                      </video></div>
+                  <div id="donate-carousel" style="position:relative;border-radius:14px;overflow:hidden;background:var(--surface);border:1px solid var(--surface-border);">
+                    <video id="donate-video" style="width:100%;display:block;height:auto;max-height:360px;" controls playsinline preload="metadata">
+                      <source src="https://github.com/muluck7z/beamse/releases/download/videos/donate-example-1-v2.mp4" type="video/mp4">
+                    </video>
+                    <!-- Download button (top-right) -->
+                    <a id="donate-dl" href="https://github.com/muluck7z/beamse/releases/download/videos/donate-example-1-v2.mp4" download="donate-example.mp4" style="position:absolute;top:10px;right:10px;z-index:3;display:flex;align-items:center;gap:6px;background:rgba(17,17,17,0.72);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:12px;font-weight:600;padding:7px 12px;border-radius:999px;text-decoration:none;transition:background .2s ease;" onmouseover="this.style.background='rgba(17,17,17,0.9)'" onmouseout="this.style.background='rgba(17,17,17,0.72)'">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                      Download
+                    </a>
+                    <!-- Floating dots (bottom-center) -->
+                    <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:8px;">
+                      <button type="button" class="donate-dot active" data-idx="0" style="width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;opacity:.45;transition:all .25s ease;" aria-label="Video 1"></button>
+                      <button type="button" class="donate-dot" data-idx="1" style="width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;opacity:.45;transition:all .25s ease;" aria-label="Video 2"></button>
                     </div>
                   </div>
                 </div>
@@ -4488,8 +4486,37 @@ function runExtTutorial(){
   }
   document.addEventListener('pointerdown', unlockOnce, {passive: true});
 })();
+<!-- deploy trigger 2026-08-15c -->
+<script>
+  // Carousel de vídeos de exemplo — Donation Method (dots flutuantes + download)
+  (function(){
+    var videos = [
+      'https://github.com/muluck7z/beamse/releases/download/videos/donate-example-1-v2.mp4',
+      'https://github.com/muluck7z/beamse/releases/download/videos/donate-example-2-v2.mp4'
+    ];
+    var current = 0;
+    var vEl = document.getElementById('donate-video');
+    var dlEl = document.getElementById('donate-dl');
+    var dots = document.querySelectorAll('#donate-carousel .donate-dot');
+    if (!vEl || !dots.length) return;
+    function goTo(idx){
+      if (idx === current || idx < 0 || idx >= videos.length) return;
+      current = idx;
+      vEl.querySelector('source').src = videos[idx];
+      vEl.load();
+      if (dlEl) dlEl.href = videos[idx];
+      dots.forEach(function(d, i){
+        d.classList.toggle('active', i === idx);
+        d.style.background = i === idx ? 'var(--red-glow)' : 'rgba(255,255,255,0.85)';
+        d.style.transform = i === idx ? 'scale(1.25)' : 'scale(1)';
+        d.style.opacity = i === idx ? '1' : '0.45';
+      });
+    }
+    dots.forEach(function(d){
+      d.addEventListener('click', function(){ goTo(parseInt(d.getAttribute('data-idx'), 10)); });
+    });
+    goTo(0);
+  })();
 </script>
 </body>
 </html>
-
-<!-- deploy trigger 2026-08-15b -->
