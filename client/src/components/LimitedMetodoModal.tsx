@@ -91,7 +91,7 @@ export default function LimitedMetodoModal({ open, onClose }: Props) {
                 <div className="flex items-center gap-2 mt-0.5">
                   <StarRating value={4.5} />
                   <span className="text-[10px] text-muted-foreground">•</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-red-500/15 text-red-400 border border-red-500/20 font-medium">Difícil</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-slate-600/15 text-slate-600 border border-slate-600/20 font-medium">Difícil</span>
                 </div>
               </div>
             </div>
